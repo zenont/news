@@ -41,7 +41,7 @@ const config = {
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [['es2015', { 'modules': false }]],
+						presets: [['es2015', { 'modules': false }], 'react', 'stage-0'],
 						plugins: ['transform-class-properties', 'transform-decorators-legacy', 'transform-object-rest-spread']
 					}
 				}],
