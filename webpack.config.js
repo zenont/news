@@ -2,14 +2,12 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 const path = require('path')
 
-const phaserModule = path.join(__dirname, '/node_modules/phaser-ce/')
-const phaser = path.join(phaserModule, 'build/custom/phaser-split.js')
-const pixi = path.join(phaserModule, 'build/custom/pixi.js')
-const p2 = path.join(phaserModule, 'build/custom/p2.js')
+const clientRoot = './src/client'
+const distRoot = './dist'
 
 // html plugin
 const htmlPlugin = new HtmlWebpackPlugin({
-	template: path.join(__dirname, './src/index.html'),
+	template: path.join(__dirname, clientRoot, 'index.html'),
 	filename: 'index.html',
 	inject: 'body'
 })
@@ -22,12 +20,12 @@ const commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
 })
 
 const config = {
-	context: path.join(__dirname, './src'),
+	context: path.join(__dirname, clientRoot),
 	entry: {
 		app: './index.js',
 	},
 	output: {
-		path: path.join(__dirname, './dist'),
+		path: path.join(__dirname, distRoot),
 		filename: '[name].bundle.js',
 	},
 	module: {
@@ -48,17 +46,11 @@ const config = {
 					}
 				}],
 			},
-			{ test: /pixi\.js/, use: ['expose-loader?PIXI'] },
-			{ test: /phaser-split\.js$/, use: ['expose-loader?Phaser'] },
-			{ test: /p2\.js/, use: ['expose-loader?p2'] }
 		],
 	},
 	plugins: [commonChunksPlugin, htmlPlugin],
 	resolve: {
 		alias: {
-			'phaser': phaser,
-			'pixi': pixi,
-			'p2': p2
 		}
 	}
 }
