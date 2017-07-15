@@ -1,0 +1,8 @@
+{
+  "name": "news",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/zenontrujillo/news.git",
+  "author": "Zenon Trujillo <zenon.t@outlook.com>",
+  "license": "MIT"
+}
