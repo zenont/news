@@ -24,6 +24,6 @@ const uglifyPlugin = // minify remove some of the dead code
 		},
 	})
 
-config.plugins.push(envPlugin, uglifyPlugin)
+config.plugins = [envPlugin, uglifyPlugin]
 
 export default config
