@@ -2,17 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Page = (props) => {
-	const { children } = props
+	const { title, children } = props
 	return (
 		<html>
-			<Head />
+			<head>
+				<meta charset="utf-8" />
+				<title>{title}</title>
+			</head>
 			<body>
 				<div id="container">
-					<NavBar />
-					<main>
+					<div>
 						{children}
-					</main>
-					<Footer />
+					</div>
+					<footer />
 				</div>
 			</body>
 		</html>
@@ -21,7 +23,11 @@ const Page = (props) => {
 
 Page.displayName = 'Page'
 Page.propTypes = {
-	children: PropTypes.node.isRequired
+	children: PropTypes.node,
+	title: PropTypes.string.isRequired
+}
+Page.defaultProps = {
+	title: 'News'
 }
 
 export default Page

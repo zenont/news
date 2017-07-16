@@ -1,19 +1,20 @@
-const path = require('path')
-var fs = require('fs')
-import template from './template'
+import React from 'react'
 import Express from 'express'
 import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
+import { renderToString, renderToStaticMarkup } from 'react-dom/server'
+import { Page } from '../common'
 
 const app = new Express()
 const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
 app.get('*', (req, res) => {
-	console.log('fileString', template)
+	const html = renderToStaticMarkup(<Page />)
+	console.log('html', html)
 	// res.send(file.toString())
 	const { url } = req
-	res.send(`<h1>some title ${url}</h1>`)
+	res.send(html)
 })
 
 app.get('/try-me', (req, res) => {
@@ -25,6 +26,6 @@ io.on('connection', (socket) => {
 	socket.broadcast.emit('USER_CONNECTED') // everyone gets it but the sender
 })
 
-const port = 3030
+const port = 3031
 const ip = '127.0.0.1'
 http.listen(port, ip)
