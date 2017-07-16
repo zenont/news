@@ -1,3 +1,6 @@
+const path = require('path')
+var fs = require('fs')
+import template from './template'
 import Express from 'express'
 import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
@@ -6,8 +9,11 @@ const app = new Express()
 const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
-app.get('/', (req, res) => {
-	res.send('<h1>lollololol!</h1>')
+app.get('*', (req, res) => {
+	console.log('fileString', template)
+	// res.send(file.toString())
+	const { url } = req
+	res.send(`<h1>some title ${url}</h1>`)
 })
 
 app.get('/try-me', (req, res) => {
