@@ -1,14 +1,14 @@
 const path = require('path')
 
-const rootDir = './src/server'
-const distDir = './dist'
+const rootDir = '../../src/server'
+const distDir = '../../dist'
 
 const config = {
 	context: path.join(__dirname, rootDir),
 	entry: { server: './index.js' },
 	target: 'node',
 	output: {
-		path: distDir,
+		path: path.join(__dirname, distDir),
 		filename: '[name].bundle.js',
 		publicPath: distDir,
 		libraryTarget: 'commonjs2',
