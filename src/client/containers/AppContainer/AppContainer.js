@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-	BrowserRouter as Router,
+	/*BrowserRouter*/HashRouter as Router,
 	Switch,
 	Route,
 } from 'react-router-dom'
-import ListContainer from './ListContainer'
-import DetailContainer from './DetailContainer'
+import ListContainer from '../ListContainer'
+import DetailContainer from '../DetailContainer'
 
 export class AppContainer extends Component {
 	render() {
@@ -16,7 +16,8 @@ export class AppContainer extends Component {
 					This is an AppContainer
 					<Switch>
 						<Route exact path="/" component={ListContainer} />
-						<Route path="/:articleId" component={DetailContainer} />
+						<Route exact path="/news" component={ListContainer} />
+						<Route exact path="/news/:articleId" component={DetailContainer} />
 					</Switch>
 				</div>
 			</Router>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
 
 export class DetailContainer extends Component {
 	render() {
@@ -19,4 +20,4 @@ DetailContainer.defaultProps = {
 	article: null
 }
 
-export default DetailContainer
+export default withRouter(DetailContainer)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
 
 export class ListContainer extends Component {
 	render() {
@@ -19,4 +20,4 @@ ListContainer.defaultProps = {
 	articles: []
 }
 
-export default ListContainer
+export default withRouter(ListContainer)
