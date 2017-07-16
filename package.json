@@ -10,9 +10,9 @@
 	},
 	"scripts": {
 		"test": "test",
-		"dev:build": "webpack -d --config webpack.config.dev.babel.js",
-		"dev": "webpack-dev-server -d --content-base dist --inline --hot --watch --config webpack.config.dev.babel.js",
-		"dev:open": "webpack-dev-server -d --content-base dist --inline --hot --watch --open --config webpack.config.dev.babel.js",
+		"build:dev": "webpack -d --config webpack.config.dev.babel.js",
+		"start": "webpack-dev-server -d --content-base dist --inline --hot --watch --config webpack.config.dev.babel.js",
+		"start:open": "webpack-dev-server -d --content-base dist --inline --hot --watch --open --config webpack.config.dev.babel.js",
 		"build": "webpack -p --config webpack.config.prd.babel.js",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
 	},
