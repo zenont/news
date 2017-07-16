@@ -9,16 +9,16 @@
 		"sourceType": "module"
 	},
 	"env": {
+		"es6": true,
 		"browser": true,
-		"node": true,
-		"jest": true,
-		"es6": true
+		"node": true
 	},
 	"extends": [
 		"eslint:recommended"
 	],
 	"plugins": [
-		"promise"
+		"promise",
+		"react"
 	],
 	"globals": {
 		"document": false,
@@ -214,7 +214,7 @@
 		"no-trailing-spaces": [
 			2,
 			{
-				"skipBlankLines": false
+				"skipBlankLines": true
 			}
 		],
 		"no-undef": 2,
@@ -358,7 +358,41 @@
 			2,
 			"never"
 		],
-		"no-spaced-func": 2,
-		"promise/param-names": 2
+		"promise/param-names": 2,
+		"react/default-props-match-prop-types": [
+			2,
+			{
+				"allowRequiredDefaults": true
+			}
+		],
+		"react/display-name": [
+			2,
+			{
+				"ignoreTranspilerName": true
+			}
+		],
+		"react/jsx-uses-vars": 2,
+		"react/jsx-uses-react": 2,
+		"react/forbid-component-props": 2,
+		"react/no-children-prop": 2,
+		"react/no-danger": 1,
+		"react/no-danger-with-children": 2,
+		"react/no-deprecated": 2,
+		"react/no-did-mount-set-state": 1,
+		"react/no-did-update-set-state": 2,
+		"react/no-direct-mutation-state": 2,
+		//"react/no-typos": 2,
+		"react/no-string-refs": 2,
+		"react/prop-types": 1,
+		"react/jsx-closing-bracket-location": 2,
+		"react/jsx-closing-tag-location": 2,
+		"react/jsx-indent": [
+			2,
+			"tab"
+		],
+		"react/jsx-equals-spacing": [
+			2,
+			"never"
+		]
 	}
 }
