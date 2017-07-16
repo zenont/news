@@ -2,12 +2,12 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 const path = require('path')
 
-const clientRoot = './src/client'
-const distRoot = './dist'
+const rootDir = '../../src/client'
+const distDir = '../../dist'
 
 // html plugin
 const htmlPlugin = new HtmlWebpackPlugin({
-	template: path.join(__dirname, clientRoot, 'index.html'),
+	template: path.join(__dirname, rootDir, 'index.html'),
 	filename: 'index.html',
 	inject: 'body'
 })
@@ -20,12 +20,12 @@ const commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
 })
 
 const config = {
-	context: path.join(__dirname, clientRoot),
+	context: path.join(__dirname, rootDir),
 	entry: {
 		app: './index.js',
 	},
 	output: {
-		path: path.join(__dirname, distRoot),
+		path: path.join(__dirname, distDir),
 		filename: '[name].bundle.js',
 	},
 	module: {
