@@ -1,6 +1,7 @@
 const path = require('path')
-var fs = require('fs')
 
+/* required hack for server code when running in webpack as described here http://tinyurl.com/ya9jbu97 */
+var fs = require('fs')
 var nodeModules = {}
 fs.readdirSync('node_modules')
 	.filter(function (x) {
@@ -19,7 +20,7 @@ const config = {
 	target: 'node',
 	output: {
 		path: path.join(__dirname, distDir),
-		filename: '[name].bundle.js',
+		filename: '[name].js',
 		publicPath: distDir,
 		libraryTarget: 'commonjs2',
 	},

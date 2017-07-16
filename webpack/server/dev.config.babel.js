@@ -8,5 +8,6 @@ const envPlugin = new webpack.EnvironmentPlugin({
 
 config.devtool = 'source-map'
 config.plugins = [envPlugin]
+config.output.filename = '[name].dev.js'
 
 export default config
