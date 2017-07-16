@@ -7,7 +7,7 @@ const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
 app.get('/', (req, res) => {
-	res.send('<h1>not wtf!</h1>')
+	res.send('<h1>lol!</h1>')
 })
 
 app.get('/try-me', (req, res) => {
