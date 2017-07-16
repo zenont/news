@@ -14,9 +14,8 @@
 		"build:dev:client": "webpack --config ./webpack/client/dev.config.babel.js",
 		"build:dev:server": "webpack --config webpack/server/dev.config.babel.js",
 		"build:dev": "run-s clean build:dev:server",
-		"start": "webpack-dev-server -d --content-base dist --inline --hot --watch --config webpack.config.dev.babel.js",
-		"start:open": "webpack-dev-server -d --content-base dist --inline --hot --watch --open --config webpack.config.dev.babel.js",
-		"serve": "nodemon src/server/index.js --exec babel-node --presets es2015,stage-0",
+		"serve": "nodemon dist/server.js",
+		"start": "run-s build:dev serve",
 		"build": "webpack -p --config webpack.config.prd.babel.js",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
 	},
