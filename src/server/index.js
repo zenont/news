@@ -3,6 +3,7 @@ import Express from 'express'
 import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom'
 import { Page } from '../common'
 
 const app = new Express()
@@ -10,7 +11,16 @@ const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
 app.get('*', (req, res) => {
-	const html = renderToStaticMarkup(<Page />)
+	const context = {}
+	const html = renderToStaticMarkup(
+		<Page>
+			<StaticRouter
+				location={req.url}
+				context={context}
+			>
+			</StaticRouter>
+		</Page>
+	)
 	console.log('html', html)
 	// res.send(file.toString())
 	const { url } = req
@@ -27,5 +37,6 @@ io.on('connection', (socket) => {
 })
 
 const port = 3031
-const ip = '127.0.0.1'
-http.listen(port, ip)
+http.listen(port, () => {
+	console.log(`listening on port ${port}`)
+})
