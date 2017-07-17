@@ -5,6 +5,7 @@ import { default as SocketIOServer } from 'socket.io'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { Page } from '../common'
+import { RootContainer } from '../client/components'
 
 const app = new Express()
 const http = new HttpServer(app)
@@ -14,11 +15,7 @@ app.get('*', (req, res) => {
 	const context = {}
 	const html = renderToStaticMarkup(
 		<Page>
-			<StaticRouter
-				location={req.url}
-				context={context}
-			>
-			</StaticRouter>
+			<RootContainer server />
 		</Page>
 	)
 	console.log('html', html)

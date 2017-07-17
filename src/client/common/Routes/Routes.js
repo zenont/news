@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
-import ListContainer from '../ListContainer'
-import DetailContainer from '../DetailContainer'
+import ListContainer from '../../ListContainer'
+import DetailContainer from '../../DetailContainer'
 
 export const Routes = () => (
 	<Switch>
@@ -11,3 +11,5 @@ export const Routes = () => (
 )
 
 Routes.displayName = 'Routes'
+
+export default Routes
