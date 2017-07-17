@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
-import Routes from '../../routes'
-import Router from './Router'
+import { Routes, Router } from '../../common'
 
 export const RootContainer = ({ store, server }) => (
 	<Provider store={store}>
