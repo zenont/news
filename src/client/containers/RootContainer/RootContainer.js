@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { Routes, Router } from '../../common'
 
-export const RootContainer = ({ store, server }) => (
+const RootContainer = ({ store, server }) => (
 	<Provider store={store}>
 		<Router server={server}>
-			{Routes}
+			<Routes />
 		</Router>
 	</Provider>
 )

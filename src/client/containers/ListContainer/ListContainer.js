@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 
-export class List extends Component {
+export class ListContainer extends Component {
 	render() {
 		return (
 			<div>
@@ -12,12 +12,12 @@ export class List extends Component {
 	}
 }
 
-List.displayName = 'List'
-List.propTypes = {
+ListContainer.displayName = 'ListContainer'
+ListContainer.propTypes = {
 	articles: PropTypes.array.isRequired,
 }
-List.defaultProps = {
+ListContainer.defaultProps = {
 	articles: []
 }
 
-export default withRouter(List)
+export default withRouter(ListContainer)

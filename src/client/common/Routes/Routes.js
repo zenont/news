@@ -1,6 +1,6 @@
+import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import ListContainer from '../../ListContainer'
-import DetailContainer from '../../DetailContainer'
+import { ListContainer, DetailContainer } from '../../containers'
 
 export const Routes = () => (
 	<Switch>

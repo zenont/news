@@ -6,13 +6,17 @@ export const Router = ({ server, children }) => {
 	if (server === true) {
 		return (
 			<StaticRouter>
-				{children}
+				<div>
+					{children}
+				</div>
 			</StaticRouter>
 		)
 	} else {
 		return (
 			<BrowserRouter>
-				{children}
+				<div>
+					{children}
+				</div>
 			</BrowserRouter>
 		)
 	}

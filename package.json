@@ -18,6 +18,7 @@
 		"start": "run-p build:dev:client",
 		"poststart": "run-p build:dev:server",
 		"build": "webpack -p --config webpack.config.prd.babel.js",
+		"local-dev": "webpack-dev-server -d --content-base ./dist --inline --hot --watch --config webpack/client/dev.config.babel.js",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
 	},
 	"license": "MIT",

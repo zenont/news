@@ -3,9 +3,8 @@ import Express from 'express'
 import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom'
 import { Page } from '../common'
-import { RootContainer } from '../client/components'
+import { RootContainer } from '../client/containers'
 
 const app = new Express()
 const http = new HttpServer(app)
@@ -13,6 +12,7 @@ const io = new SocketIOServer(http).of('/booty-ws')
 
 app.get('*', (req, res) => {
 	const context = {}
+	//<RootContainer server />
 	const html = renderToStaticMarkup(
 		<Page>
 			<RootContainer server />
