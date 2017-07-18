@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import config from './webpack.config'
+import config from './base.config'
 
 const envPlugin = new webpack.EnvironmentPlugin({
 	NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined,
@@ -10,5 +10,9 @@ const envPlugin = new webpack.EnvironmentPlugin({
 
 config.devtool = 'source-map'
 config.plugins.push(envPlugin)
+config.plugins.push(new webpack.HotModuleReplacementPlugin())
+/*config.devServer = {
+	historyApiFallback: true,
+}*/
 
 export default config

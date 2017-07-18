@@ -1,5 +1,8 @@
-# VSCode
+# VCode
 /.vs/
+
+# news app
+/dist/
 
 # Logs
 logs
