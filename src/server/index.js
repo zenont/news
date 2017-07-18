@@ -22,6 +22,13 @@ app.get('/try-me', (req, res) => {
 	res.send('<h1>Yay!!</h1>')
 })
 
+app.get('/', (req, res) => {
+	res.writeHead(301, {
+		Location: req.url + 'home'
+	})
+	res.end()
+})
+
 app.get('*', (req, res) => {
 	/*fs.readFile(path.join('./', assetsPath, 'index.html'), 'utf8', (err, data) => {
 		console.log('assetsPath', assetsPath)
@@ -34,17 +41,26 @@ app.get('*', (req, res) => {
 
 	console.log('requesting on', req.url, req.params, req.query)
 	const context = {}
-	const stringifiedHtml = renderToStaticMarkup(
-		<Page>
-			<RootContainer
-				server
-				store={store}
-				context={context}
-				location={req.url}
-			/>
-		</Page>
-	)
-	res.send(stringifiedHtml)
+	if (context.url) {
+		console.log('redirecting on', context.url, req.url, req.params, req.query)
+		res.writeHead(301, {
+			Location: context.url
+		})
+		res.end()
+	} else {
+		console.log('SSR on', req.url, req.params, req.query)
+		const stringifiedHtml = renderToStaticMarkup(
+			<Page>
+				<RootContainer
+					server
+					store={store}
+					context={context}
+					location={req.url}
+				/>
+			</Page>
+		)
+		res.send(stringifiedHtml)
+	}
 })
 
 io.on('connection', (socket) => {
