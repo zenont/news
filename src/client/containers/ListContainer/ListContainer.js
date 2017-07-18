@@ -25,9 +25,10 @@ ListContainer.defaultProps = {
 }
 
 const mapStateToProps = (store) => {
-	const article = store.article.toJS()
+	const { article } = store
+
 	return {
-		articles: article.articles
+		articles: article.get('articles').toJS()
 	}
 }
 
