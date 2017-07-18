@@ -21,7 +21,7 @@ const config = {
 	output: {
 		path: path.join(__dirname, distDir),
 		filename: '[name].js',
-		publicPath: distDir,
+		publicPath: '/',
 		libraryTarget: 'commonjs2',
 	},
 	module: {

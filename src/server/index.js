@@ -11,11 +11,13 @@ const app = new Express()
 const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
+app.use('/assets', Express.static('static'))
+
 app.get('/try-me', (req, res) => {
 	res.send('<h1>Yay!!</h1>')
 })
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
 	console.log('requesting on', req.url, req.params, req.query)
 	const context = {}
 	const stringifiedHtml = renderToStaticMarkup(

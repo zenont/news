@@ -10,6 +10,7 @@ const envPlugin = new webpack.EnvironmentPlugin({
 
 config.devtool = 'source-map'
 config.plugins.push(envPlugin)
+config.plugins.push(new webpack.HotModuleReplacementPlugin())
 /*config.devServer = {
 	historyApiFallback: true,
 }*/

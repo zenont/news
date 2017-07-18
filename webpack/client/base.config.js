@@ -27,6 +27,7 @@ const config = {
 	output: {
 		path: path.join(__dirname, distDir),
 		filename: '[name].js',
+		publicPath: '/assets/'
 	},
 	module: {
 		rules: [
