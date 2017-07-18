@@ -22,7 +22,7 @@ app.get('/try-me', (req, res) => {
 	res.send('<h1>Yay!!</h1>')
 })
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
 	fs.readFile(path.join('./', assetsPath, 'index.html'), 'utf8', (err, data) => {
 		console.log('assetsPath', assetsPath)
 		if (err) {
