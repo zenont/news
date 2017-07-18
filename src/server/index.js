@@ -23,14 +23,14 @@ app.get('/try-me', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-	fs.readFile(path.join('./', assetsPath, 'index.html'), 'utf8', (err, data) => {
+	/*fs.readFile(path.join('./', assetsPath, 'index.html'), 'utf8', (err, data) => {
 		console.log('assetsPath', assetsPath)
 		if (err) {
 			return console.log(err)
 		}
 
 		console.log(data)
-	})
+	})*/
 
 	console.log('requesting on', req.url, req.params, req.query)
 	const context = {}
