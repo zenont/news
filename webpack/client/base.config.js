@@ -1,9 +1,9 @@
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { outputPath, publicPath } from '../paths'
 const path = require('path')
 
 const rootDir = '../../src/client'
-const distDir = '../../dist'
 
 // html plugin
 const htmlPlugin = new HtmlWebpackPlugin({
@@ -25,9 +25,9 @@ const config = {
 		app: './index.js',
 	},
 	output: {
-		path: path.join(__dirname, distDir),
+		path: outputPath,
 		filename: '[name].js',
-		publicPath: '/assets/'
+		publicPath: publicPath
 	},
 	module: {
 		rules: [

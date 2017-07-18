@@ -1,5 +1,5 @@
 const path = require('path')
-
+import { outputPath, publicPath } from '../paths'
 /* required hack for server code when running in webpack as described here http://tinyurl.com/ya9jbu97 */
 var fs = require('fs')
 var nodeModules = {}
@@ -12,16 +12,15 @@ fs.readdirSync('node_modules')
 	})
 
 const rootDir = '../../src/server'
-const distDir = '../../dist'
 
 const config = {
 	context: path.join(__dirname, rootDir),
 	entry: { server: './index.js' },
 	target: 'node',
 	output: {
-		path: path.join(__dirname, distDir),
+		path: outputPath,
 		filename: '[name].js',
-		publicPath: '/',
+		publicPath: publicPath,
 		libraryTarget: 'commonjs2',
 	},
 	module: {
