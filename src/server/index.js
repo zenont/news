@@ -4,28 +4,31 @@ import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { Page } from '../common'
-import { RootContainer } from '../client/containers'
+import RootContainer from '../client/containers'
+import store from '../client/store'
 
 const app = new Express()
 const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
-app.get('*', (req, res) => {
-	const context = {}
-	//<RootContainer server />
-	const html = renderToStaticMarkup(
-		<Page>
-			<RootContainer server />
-		</Page>
-	)
-	console.log('html', html)
-	// res.send(file.toString())
-	const { url } = req
-	res.send(html)
-})
-
 app.get('/try-me', (req, res) => {
 	res.send('<h1>Yay!!</h1>')
+})
+
+app.get('*', (req, res) => {
+	console.log('requesting on', req.url, req.params, req.query)
+	const context = {}
+	const stringifiedHtml = renderToStaticMarkup(
+		<Page>
+			<RootContainer
+				server
+				store={store}
+				context={context}
+				location={req.url}
+			/>
+		</Page>
+	)
+	res.send(stringifiedHtml)
 })
 
 io.on('connection', (socket) => {

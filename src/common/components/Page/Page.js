@@ -16,6 +16,8 @@ const Page = (props) => {
 					</div>
 					<footer />
 				</div>
+				<script type="text/javascript" src="commons.js" />
+				<script type="text/javascript" src="app.js"/>
 			</body>
 		</html>
 	)

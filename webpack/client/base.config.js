@@ -26,7 +26,7 @@ const config = {
 	},
 	output: {
 		path: path.join(__dirname, distDir),
-		filename: '[name].bundle.js',
+		filename: '[name].js',
 	},
 	module: {
 		rules: [

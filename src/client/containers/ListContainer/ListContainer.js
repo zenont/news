@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
+import { ListLayout } from '../../components'
 
 export class ListContainer extends Component {
 	render() {
+		const { articles } = this.props
 		return (
 			<div>
 				List Coontainer
+				<ListLayout articles={articles} />
 			</div>
 		)
 	}
@@ -20,4 +24,17 @@ ListContainer.defaultProps = {
 	articles: []
 }
 
-export default withRouter(ListContainer)
+const mapStateToProps = (store) => {
+	const article = store.article.toJS()
+	return {
+		articles: article.articles
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+
+	}
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ListContainer))
