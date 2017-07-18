@@ -11,13 +11,13 @@ const Page = (props) => {
 			</head>
 			<body>
 				<div id="container">
-					<div>
+					<div id="app">
 						{children}
 					</div>
 					<footer />
 				</div>
-				<script type="text/javascript" src="commons.js" />
-				<script type="text/javascript" src="app.js"/>
+				<script type="text/javascript" src="assets/commons.js" />
+				<script type="text/javascript" src="assets/app.js"/>
 			</body>
 		</html>
 	)

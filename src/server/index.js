@@ -16,7 +16,7 @@ const io = new SocketIOServer(http).of('/booty-ws')
 const assetsPath = path.join(__dirname, '../dist', 'assets')
 const staticPath = path.join('./', assetsPath)
 console.log('relative lol', staticPath)
-app.use('/static', Express.static(staticPath))
+app.use('/assets', Express.static(staticPath))
 
 app.get('/try-me', (req, res) => {
 	res.send('<h1>Yay!!</h1>')
