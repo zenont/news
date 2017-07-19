@@ -11,8 +11,8 @@
 	"scripts": {
 		"test": "test",
 		"cleanup": "rimraf dist",
-		"build:dev:client": "cross-env CLIENT_PUBLIC_PATH=assets/ cross-env CLIENT_OUTPUT_PATH=dist/assets cross-env NODE_ENV=development webpack --config webpack/client/dev.config.babel.js",
-		"build:dev:server": "cross-env CLIENT_PUBLIC_PATH=assets/ cross-env CLIENT_OUTPUT_PATH=dist/assets cross-env NODE_ENV=development webpack --watch --config webpack/server/dev.config.babel.js",
+		"build:dev:client": "webpack --config webpack/client/dev.config.babel.js",
+		"build:dev:server": "cross-env ASSETS_PATH=../dist/assets/ webpack --watch --config webpack/server/dev.config.babel.js",
 		"build:dev": "run-s cleanup build:dev:server",
 		"prestart": "run-s cleanup",
 		"start": "run-p build:dev:client",

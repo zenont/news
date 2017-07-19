@@ -8,6 +8,7 @@ const Page = (props) => {
 			<head>
 				<meta charset="utf-8" />
 				<title>{title}</title>
+				<link rel="shortcut icon" href="/assets/favicon.ico" />
 			</head>
 			<body>
 				<div id="container">

@@ -1,13 +1,14 @@
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { outputPath, publicPath } from '../paths'
 const path = require('path')
 
-const rootDir = '../../src/client'
+const rootPath = '../../src/client'
+const outputPath = path.join(__dirname, '../../dist/assets')
+const publicPath = 'assets/'
 
 // html plugin
 const htmlPlugin = new HtmlWebpackPlugin({
-	template: path.join(__dirname, rootDir, 'index.html'),
+	template: path.join(__dirname, rootPath, 'index.html'),
 	filename: 'index.html',
 	inject: 'body'
 })
@@ -20,7 +21,7 @@ const commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
 })
 
 const config = {
-	context: path.join(__dirname, rootDir),
+	context: path.join(__dirname, rootPath),
 	entry: {
 		app: './index.js',
 	},
@@ -35,6 +36,11 @@ const config = {
 				test: /\.(jpe?g|png|gif|svg|jpg|json)$/i,
 				exclude: /node_modules/,
 				loader: 'file-loader'
+			},
+			{
+				test: /\.(ico)$/i,
+				exclude: /node_modules/,
+				loader: 'file-loader?name=[name].[ext]'
 			},
 			{
 				test: /\.js$/,
