@@ -15,7 +15,7 @@ export class ListLayout extends Component {
 						const { id, summary } = article
 						return (
 							<li key={id}>
-								<Link to={`/news/${id}`}>{summary}</Link>
+								<Link to={`/home/news/${id}`}>{summary}</Link>
 							</li>
 						)
 					})}

@@ -8,7 +8,7 @@ export class DetailLayout extends Component {
 	handleOnClick(e) {
 		console.log('handleOnClick', e, this.props)
 		const { history } = this.props
-		history.push('/news')
+		history.push('/home/news')
 	}
 
 	render() {
