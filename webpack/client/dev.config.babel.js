@@ -9,10 +9,16 @@ const envPlugin = new webpack.EnvironmentPlugin({
 })
 
 config.devtool = 'source-map'
-config.plugins.push(envPlugin)
-config.plugins.push(new webpack.HotModuleReplacementPlugin())
-/*config.devServer = {
+config.plugins = [
+	...config.plugins,
+	envPlugin,
+	new webpack.NoEmitOnErrorsPlugin(),
+	new webpack.HotModuleReplacementPlugin()
+]
+/*
+config.devServer = {
 	historyApiFallback: true,
-}*/
+}
+*/
 
 export default config

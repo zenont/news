@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
+import styles from './detailLayout.scss'
 import { Link } from 'react-router-dom'
 
 export class DetailLayout extends Component {
-
 	handleOnClick(e) {
 		console.log('handleOnClick', e, this.props)
 		const { history } = this.props
@@ -15,7 +15,7 @@ export class DetailLayout extends Component {
 		const { article } = this.props
 
 		return (
-			<div>
+			<div className={styles.detailLayout}>
 				DetailLayout
 				<div>{
 					article ? <div>{article.id}</div> : <div>Article not found!</div>

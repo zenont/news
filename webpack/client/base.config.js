@@ -38,6 +38,26 @@ const config = {
 				loader: 'file-loader'
 			},
 			{
+				test: /\.(sass|scss)$/,
+				use: [
+					{
+						loader: 'style-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true,
+							importLoaders: 1,
+							sourceMap: true,
+						},
+					},
+					{ loader: 'sass-loader' }
+				]
+			},
+			{
 				test: /\.(ico)$/i,
 				exclude: /node_modules/,
 				loader: 'file-loader?name=[name].[ext]'
@@ -55,7 +75,13 @@ const config = {
 			},
 		],
 	},
-	plugins: [commonChunksPlugin, htmlPlugin],
+	plugins: [
+		commonChunksPlugin,
+		htmlPlugin,
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		})
+	],
 	resolve: {
 		alias: {
 		}

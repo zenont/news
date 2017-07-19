@@ -38,9 +38,10 @@ app.get('*', (req, res) => {
 	})*/
 
 	console.log('requesting on', req.url, req.params, req.query)
-	const context = {}
+	const css = new Set() // CSS for all rendered React components
+	const context = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) }
 	const stringifiedHtml = renderToStaticMarkup(
-		<Page>
+		<Page css={css}>
 			<RootContainer
 				server
 				store={store}

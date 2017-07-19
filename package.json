@@ -11,8 +11,8 @@
 	"scripts": {
 		"test": "test",
 		"cleanup": "rimraf dist",
-		"build:dev:client": "webpack --config webpack/client/dev.config.babel.js",
-		"build:dev:server": "cross-env ASSETS_PATH=../dist/assets/ webpack --watch --config webpack/server/dev.config.babel.js",
+		"build:dev:client": "cross-env NODE_ENV=development webpack --config webpack/client/dev.config.babel.js",
+		"build:dev:server": "cross-env NODE_ENV=development cross-env ASSETS_PATH=../dist/assets/ webpack --watch --config webpack/server/dev.config.babel.js",
 		"build:dev": "run-s cleanup build:dev:server",
 		"prestart": "run-s cleanup",
 		"start": "run-p build:dev:client",
@@ -52,6 +52,7 @@
 		"babel-register": "^6.24.1",
 		"babel-watch": "^2.0.7",
 		"cross-env": "^5.0.1",
+		"css-loader": "^0.28.4",
 		"eslint": "^4.2.0",
 		"eslint-config-recommended": "^1.5.0",
 		"eslint-plugin-promise": "^3.5.0",
@@ -59,13 +60,17 @@
 		"expose-loader": "^0.7.3",
 		"file-loader": "^0.11.2",
 		"html-webpack-plugin": "^2.29.0",
+		"isomorphic-style-loader": "^3.0.0",
+		"node-sass": "^4.5.3",
 		"nodemon": "^1.11.0",
 		"npm-run-all": "^4.0.2",
+		"postcss-loader": "^2.0.6",
 		"rimraf": "^2.6.1",
+		"sass-loader": "^6.0.6",
+		"style-loader": "^0.18.2",
 		"uglifyjs-webpack-plugin": "^0.4.6",
 		"webpack": "^3.3.0",
 		"webpack-dev-server": "^2.5.1",
-		"webpack-hot-middleware": "^2.18.2",
 		"webpack-shell-plugin": "^0.5.0"
 	}
 }

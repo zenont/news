@@ -27,6 +27,35 @@ const config = {
 	},
 	module: {
 		rules: [
+			/*{
+				test: /\.(sass|scss)$/,
+				use: [
+					{ loader: 'style-loader' },
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true,
+							importLoaders: 1,
+							sourceMap: false,
+						},
+					},
+					{ loader: 'sass-loader' }
+				]
+			},*/
+			{
+				test: /\.(sass|scss|css)$/,
+				use: [
+					'isomorphic-style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 1,
+							modules: true,
+						}
+					},
+					'sass-loader'
+				]
+			},
 			{
 				test: /\.js$/,
 				exclude: [/node_modules/],
