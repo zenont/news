@@ -18,32 +18,19 @@ const staticPath = path.join('./', assetsPath)
 console.log('relative lol', staticPath)
 app.use('/assets', Express.static(staticPath))
 
-app.get('/try-me', (req, res) => {
-	res.send('<h1>Yay!!</h1>')
-})
-
 app.get('/', (req, res) => {
-	res.writeHead(301, {
-		Location: req.url + 'home'
+	res.writeHead(302, {
+		Location: '/home'
 	})
 	res.end()
 })
 
 app.get('*', (req, res) => {
-	/*fs.readFile(path.join('./', assetsPath, 'index.html'), 'utf8', (err, data) => {
-		console.log('assetsPath', assetsPath)
-		if (err) {
-			return console.log(err)
-		}
-
-		console.log(data)
-	})*/
-
 	console.log('requesting on', req.url, req.params, req.query)
 	const context = {}
 	if (context.url) {
 		console.log('redirecting on', context.url, req.url, req.params, req.query)
-		res.writeHead(301, {
+		res.writeHead(302, {
 			Location: context.url
 		})
 		res.end()
