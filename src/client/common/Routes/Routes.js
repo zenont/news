@@ -14,13 +14,17 @@ const RedirectWithStatus = ({ from, to, status }) => {
 		/>
 	)
 }
-
+// <RedirectWithStatus status={302} from="/" to="/home" />
 export const Routes = () => (
-	<Switch>
-		<Route exact path="/home" component={ListContainer} />
-		<Route exact path="/home/news" component={ListContainer} />
-		<Route exact path="/home/news/:articleId" component={DetailContainer} />
-	</Switch>
+	<div>
+		<Switch>
+			<Redirect exact from="/" to="/home" />
+			<Route exact path="/home" component={ListContainer} />
+			<Route exact path="/home/news" component={ListContainer} />
+			<Route exact path="/home/news/:articleId" component={DetailContainer} />
+		</Switch>
+	</div>
+
 )
 
 Routes.displayName = 'Routes'

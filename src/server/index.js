@@ -15,19 +15,29 @@ const io = new SocketIOServer(http).of('/booty-ws')
 
 const assetsPath = path.join(__dirname, '../dist', 'assets')
 const staticPath = path.join('./', assetsPath)
-console.log('relative lol', staticPath)
 app.use('/assets', Express.static(staticPath))
-
+/*
 app.get('/', (req, res) => {
 	res.writeHead(302, {
 		Location: '/home'
 	})
 	res.end()
-})
-
+})*/
 app.get('*', (req, res) => {
-	console.log('requesting on', req.url, req.params, req.query)
 	const context = {}
+	console.log('requesting on', req.url, req.params, req.query, context)
+
+	const stringifiedHtml = renderToStaticMarkup(
+		<Page>
+			<RootContainer
+				server
+				store={store}
+				context={context}
+				location={req.url}
+			/>
+		</Page>
+	)
+
 	if (context.url) {
 		console.log('redirecting on', context.url, req.url, req.params, req.query)
 		res.writeHead(302, {
@@ -36,16 +46,7 @@ app.get('*', (req, res) => {
 		res.end()
 	} else {
 		console.log('SSR on', req.url, req.params, req.query)
-		const stringifiedHtml = renderToStaticMarkup(
-			<Page>
-				<RootContainer
-					server
-					store={store}
-					context={context}
-					location={req.url}
-				/>
-			</Page>
-		)
+
 		res.send(stringifiedHtml)
 	}
 })
