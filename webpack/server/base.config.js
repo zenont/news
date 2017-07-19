@@ -27,10 +27,15 @@ const config = {
 	},
 	module: {
 		rules: [
-			/*{
+			{
 				test: /\.(sass|scss)$/,
 				use: [
-					{ loader: 'style-loader' },
+					/*{
+						loader: 'style-loader',
+						options: {
+							sourceMap: true
+						}
+					},*/
 					{
 						loader: 'css-loader',
 						options: {
@@ -40,20 +45,6 @@ const config = {
 						},
 					},
 					{ loader: 'sass-loader' }
-				]
-			},*/
-			{
-				test: /\.(sass|scss|css)$/,
-				use: [
-					'isomorphic-style-loader',
-					{
-						loader: 'css-loader',
-						options: {
-							importLoaders: 1,
-							modules: true,
-						}
-					},
-					'sass-loader'
 				]
 			},
 			{
