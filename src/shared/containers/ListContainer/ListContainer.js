@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
@@ -13,11 +13,11 @@ export class ListContainer extends Component {
 	}
 
 	render() {
-		const { articles } = this.props
+		const { articles, sourceOptions } = this.props
 		return (
 			<div>
 				List Coontainer
-				<ListLayout articles={articles} />
+				<ListLayout articles={articles} sources={sourceOptions} />
 			</div>
 		)
 	}
@@ -27,16 +27,18 @@ ListContainer.displayName = 'ListContainer'
 ListContainer.propTypes = {
 	articles: PropTypes.array.isRequired,
 	articleActions: PropTypes.object.isRequired,
+	sourceOptions: PropTypes.array.isRequired,
 }
 ListContainer.defaultProps = {
-	articles: []
+	articles: [],
+	sourceOptions: []
 }
 
 const mapStateToProps = (store) => {
 	const { article } = store
-
 	return {
-		articles: article.get('articles').toJS()
+		articles: article.get('articles').toJS(),
+		sourceOptions: article.getIn(['sources', 'options']).toJS()
 	}
 }
 

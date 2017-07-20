@@ -5,11 +5,19 @@ import { Link } from 'react-router-dom'
 
 export class ListLayout extends Component {
 	render() {
-		const { articles } = this.props
+		const { articles, sources } = this.props
+
+		const options = sources.map(source => {
+			const { id, name } = source
+			return (<option key={id} value={id}>{name}</option>)
+		})
 
 		return (
 			<div>
 				ListLayout
+				<select name="" id="">
+					{options}
+				</select>
 				<ul>
 					{articles.map((article, index) => {
 						const { id, summary } = article
@@ -28,9 +36,11 @@ export class ListLayout extends Component {
 ListLayout.displayName = 'ListLayout'
 ListLayout.propTypes = {
 	articles: PropTypes.array.isRequired,
+	sources: PropTypes.array.isRequired,
 }
 ListLayout.defaultProps = {
-	articles: []
+	articles: [],
+	sources: [],
 }
 
 export default withRouter(ListLayout)

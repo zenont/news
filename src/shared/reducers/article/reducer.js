@@ -17,7 +17,7 @@ export default function reducer(state = initState, action) {
 			return newState
 				.setIn(['sources', 'fetching'], false)
 				.setIn(['sources', 'fetched'], true)
-				.updateIn(['sources', 'options'], val => append === true ? val.concat(sources) : sources)
+				.updateIn(['sources', 'options'], val => append === true ? val.concat(sources) : List(sources))
 		}
 
 		case types.NEWS_SOURCE_OPTIONS_SELECT: {
