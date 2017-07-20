@@ -9,6 +9,13 @@ for (let i = 0; i < 99; i++) {
 const state = Map({
 	articles: List(articles),
 	selected: List(),
+	fetched: false,
+	sources: Map({
+		options: List(),
+		selected: List(),
+		fetched: false,
+		fetching: true
+	})
 })
 
 export default state
