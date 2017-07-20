@@ -14,7 +14,7 @@ export class DetailLayout extends Component {
 
 		return (
 			<div className={styles.detailLayout}>
-				Detail Layout
+				Detail Layout Yay!
 				<div>{
 					article ? <div>{article.id}</div> : <div>Article not found!</div>
 				}
