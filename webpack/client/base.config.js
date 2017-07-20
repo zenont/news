@@ -82,11 +82,11 @@ const config = {
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [['es2015', { 'modules': false }], 'react', 'stage-0'],
+						presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
 						plugins: [
-							/*'transform-class-properties',
+							'transform-class-properties',
 							'transform-decorators-legacy',
-							'transform-object-rest-spread',*/
+							'transform-object-rest-spread',
 							'react-hot-loader/babel',
 						],
 						babelrc: false

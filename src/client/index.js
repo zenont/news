@@ -18,16 +18,6 @@ const hotRender = Component => {
 
 hotRender(RootContainer)
 
-// hot module replacement
-/*
-if (process.env.NODE_ENV === 'development' && module.hot) {
-	module.hot.accept('../shared/containers', () => {
-		const NewApp = require('../shared/containers').default
-		render(<NewApp />, document.getElementById('app'))
-	})
-}
-*/
 if (module.hot) {
-	console.log('hoooot >>>>>>>>>>')
 	module.hot.accept('../shared/containers', () => hotRender(RootContainer))
 }
