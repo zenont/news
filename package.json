@@ -13,7 +13,7 @@
 		"cleanup": "rimraf dist",
 		"build:dev:client": "cross-env NODE_ENV=development webpack --config webpack/client/dev.config.babel.js",
 		"build:dev:server": "cross-env NODE_ENV=development cross-env ASSETS_PATH=../dist/assets/ webpack --watch --config webpack/server/dev.config.babel.js",
-		"client-dev-server": "webpack-dev-server -d --content-base ./dist --inline --watch --config webpack/client/dev.config.babel.js",
+		"client-dev-server": "webpack-dev-server --config webpack/client/dev.config.babel.js",
 		"start": "run-s cleanup client-dev-server",
 		"start:server": "run-s cleanup build:dev:client build:dev:server",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
@@ -26,7 +26,7 @@
 		"prop-types": "^15.5.10",
 		"react": "^15.6.1",
 		"react-dom": "^15.6.1",
-		"react-hot-loader": "next",
+		"react-hot-loader": "3.0.0-beta.6",
 		"react-redux": "^5.0.5",
 		"react-router-dom": "^4.1.2",
 		"redux": "^3.7.2",

@@ -6,18 +6,11 @@ import { AppContainer } from 'react-hot-loader'
 import '../shared/assets/favicon.ico'
 
 const app = document.getElementById('app')
-/*
-render(
-	<AppContainer>
-		<RootContainer server={false} store={store} />
-	</AppContainer>
-	, app)
-*/
 
 const hotRender = Component => {
 	render(
 		<AppContainer>
-			<Component server={false} store={store}/>
+			<Component server={false} store={store} />
 		</AppContainer>,
 		app
 	)
@@ -35,5 +28,6 @@ if (process.env.NODE_ENV === 'development' && module.hot) {
 }
 */
 if (module.hot) {
-	module.hot.accept('../shared/containers', () => { hotRender(RootContainer) })
+	console.log('hoooot >>>>>>>>>>')
+	module.hot.accept('../shared/containers', () => hotRender(RootContainer))
 }

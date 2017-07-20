@@ -10,12 +10,16 @@ config.devtool = 'eval'
 config.plugins = [
 	...config.plugins,
 	envPlugin,
+	new webpack.HotModuleReplacementPlugin(),
+	new webpack.NamedModulesPlugin(),
 	new webpack.NoEmitOnErrorsPlugin(),
-	new webpack.HotModuleReplacementPlugin()
 ]
 
 config.devServer = {
 	historyApiFallback: true,
+	hot: true,
+	contentBase: './dist',
+	// inline: true
 }
 
 export default config

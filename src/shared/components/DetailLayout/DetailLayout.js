@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import styles from './detailLayout.scss'
-import { Link } from 'react-router-dom'
 
 export class DetailLayout extends Component {
 	handleOnClick(e) {
@@ -15,7 +14,7 @@ export class DetailLayout extends Component {
 
 		return (
 			<div className={styles.detailLayout}>
-				DetailLayout
+				yay! hot reloading!
 				<div>{
 					article ? <div>{article.id}</div> : <div>Article not found!</div>
 				}

@@ -24,7 +24,18 @@ const config = {
 	context: path.join(__dirname, rootPath),
 	entry: {
 		app: [
+			'babel-polyfill',
 			'react-hot-loader/patch',
+			// activate HMR for React
+
+			'webpack-dev-server/client?http://localhost:8080',
+			// bundle the client for webpack-dev-server
+			// and connect to the provided endpoint
+
+			'webpack/hot/only-dev-server',
+			// bundle the client for hot reloading
+			// only- means to only hot reload for successful updates
+
 			'./index.js',
 		],
 	},
@@ -73,11 +84,12 @@ const config = {
 					options: {
 						presets: [['es2015', { 'modules': false }], 'react', 'stage-0'],
 						plugins: [
-							'transform-class-properties',
+							/*'transform-class-properties',
 							'transform-decorators-legacy',
-							'transform-object-rest-spread',
+							'transform-object-rest-spread',*/
 							'react-hot-loader/babel',
-						]
+						],
+						babelrc: false
 					}
 				}],
 			},
