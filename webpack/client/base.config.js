@@ -23,7 +23,10 @@ const commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
 const config = {
 	context: path.join(__dirname, rootPath),
 	entry: {
-		app: './index.js',
+		app: [
+			'react-hot-loader/patch',
+			'./index.js',
+		],
 	},
 	output: {
 		path: outputPath,
@@ -69,7 +72,12 @@ const config = {
 					loader: 'babel-loader',
 					options: {
 						presets: [['es2015', { 'modules': false }], 'react', 'stage-0'],
-						plugins: ['transform-class-properties', 'transform-decorators-legacy', 'transform-object-rest-spread']
+						plugins: [
+							'transform-class-properties',
+							'transform-decorators-legacy',
+							'transform-object-rest-spread',
+							'react-hot-loader/babel',
+						]
 					}
 				}],
 			},

@@ -6,7 +6,7 @@ const envPlugin = new webpack.EnvironmentPlugin({
 	DEBUG: true
 })
 
-config.devtool = 'source-map'
+config.devtool = 'eval'
 config.plugins = [
 	...config.plugins,
 	envPlugin,
