@@ -13,10 +13,8 @@
 		"cleanup": "rimraf dist",
 		"build:dev:client": "cross-env NODE_ENV=development webpack --config webpack/client/dev.config.babel.js",
 		"build:dev:server": "cross-env NODE_ENV=development cross-env ASSETS_PATH=../dist/assets/ webpack --watch --config webpack/server/dev.config.babel.js",
-		"build:dev": "run-s cleanup build:dev:server",
-		"build": "webpack -p --config webpack.config.prd.babel.js",
-		"dev-server": "webpack-dev-server -d --content-base ./dist --inline --watch --config webpack/client/dev.config.babel.js",
-		"start" :"run-s cleanup dev-server",
+		"client-dev-server": "webpack-dev-server -d --content-base ./dist --inline --watch --config webpack/client/dev.config.babel.js",
+		"start" :"run-s cleanup client-dev-server",
 		"start:server": "run-s cleanup build:dev:client build:dev:server",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
 	},
