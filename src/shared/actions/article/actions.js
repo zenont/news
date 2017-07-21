@@ -23,7 +23,10 @@ export function fetchSourceOptionsAsync() {
 export function fetchArticlesBySourceIdAsync(sourceId = 'cnn') {
 	return (dispatch, getState) => {
 		const { sources: { options: sourceOptions } } = getState().news.toJS()
-		const selectedSource = sourceOptions.filter(sourceOption => sourceOption.id === sourceId)
+		const selectedSource = sourceOptions
+			.filter(option => option.id === sourceId)
+			.shift()
+
 		const { id = 'cnn', sortBysAvailables = ['top'] } = selectedSource
 		console.log('fetchArticlesBySourceIdAsync', sourceId, id, selectedSource, sourceOptions)
 		dispatch({ type: types.NEWS_ARTICLE_REQUEST })
