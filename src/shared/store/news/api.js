@@ -1,8 +1,14 @@
 import urlJoin from 'url-join'
 import { stringify } from 'query-string'
+import { ajax } from 'rxjs/observable/dom/ajax'
 
 const NEWS_API_URL = process.env.NEWS_API_URL
 const NEWS_API_KEY = process.env.NEWS_API_KEY
+
+const settings = {
+	crossDomain: true,
+	responseType: 'json'
+}
 
 export function fetchSourcesAsync(language = 'en', country = 'us', category = null) {
 	const params = {
@@ -12,14 +18,11 @@ export function fetchSourcesAsync(language = 'en', country = 'us', category = nu
 		apiKey: NEWS_API_KEY
 	}
 
-	const init = {
-		method: 'GET',
-		mode: 'cors',
-		cache: 'default'
-	}
-
 	const url = urlJoin(NEWS_API_URL, 'sources', `?${stringify(params)}`)
-	return fetch(url, init)
+	return ajax({
+		...settings,
+		url
+	})
 }
 
 export function fetchArticlesAsync(source = 'cnn', sort = 'popular') {
@@ -29,12 +32,9 @@ export function fetchArticlesAsync(source = 'cnn', sort = 'popular') {
 		apiKey: NEWS_API_KEY
 	}
 
-	const init = {
-		method: 'GET',
-		mode: 'cors',
-		cache: 'default'
-	}
-
 	const url = urlJoin(NEWS_API_URL, 'articles', `?${stringify(params)}`)
-	return fetch(url, init)
+	return ajax({
+		...settings,
+		url
+	})
 }

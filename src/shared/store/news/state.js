@@ -4,6 +4,7 @@ const state = Map({
 	articles: List(),
 	selected: 'cnn',
 	fetched: false,
+	fetching: false,
 	sources: Map({
 		options: List(),
 		selected: 'cnn',
