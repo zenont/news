@@ -25,6 +25,7 @@ export function fetchArticlesBySourceIdAsync(sourceId = 'cnn') {
 		const { sources: { options: sourceOptions } } = getState().news.toJS()
 		const selectedSource = sourceOptions.filter(sourceOption => sourceOption.id === sourceId)
 		const { id = 'cnn', sortBysAvailables = ['top'] } = selectedSource
+		console.log('fetchArticlesBySourceIdAsync', sourceId, id, selectedSource, sourceOptions)
 		dispatch({ type: types.NEWS_ARTICLE_REQUEST })
 		return fetchArticlesAsync(id, sortBysAvailables[0])
 			.then(response => (response.json()), error => dispatch({ type: types.APP_SET_ERROR, payload: error }))
@@ -41,7 +42,6 @@ export function fetchArticlesBySourceIdAsync(sourceId = 'cnn') {
 	}
 }
 
-export function selectSource(source) {
-	const payload = source ? (Array.isArray(source) ? source : [source]) : []
-	return { type: types.NEWS_SOURCE_OPTIONS_SELECT, payload }
+export function selectSourceId(sourceId = 'cnn') {
+	return { type: types.NEWS_SOURCE_OPTIONS_SELECT, payload: sourceId }
 }

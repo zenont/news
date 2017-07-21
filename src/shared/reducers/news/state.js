@@ -1,18 +1,12 @@
 import { Map, List } from 'immutable'
 
-const articles = []
-for (let i = 0; i < 99; i++) {
-	const id = i + 1
-	articles.push({ id, summary: `article ${id}` })
-}
-
 const state = Map({
-	articles: List(articles),
-	selected: List(),
+	articles: List(),
+	selected: 'cnn',
 	fetched: false,
 	sources: Map({
 		options: List(),
-		selected: List(),
+		selected: 'cnn',
 		fetched: false,
 		fetching: true
 	})

@@ -1,4 +1,4 @@
-import { Map, List } from 'immutable'
+import { List } from 'immutable'
 import initState from './state'
 import * as types from '../../constants'
 
@@ -21,9 +21,14 @@ export default function reducer(state = initState, action) {
 		}
 
 		case types.NEWS_SOURCE_OPTIONS_SELECT: {
-			const selected = Array.isArray(payload) ? payload : [payload]
 			return newState
-				.setIn(['sources', 'selected'], List(selected))
+				.setIn(['sources', 'selected'], payload)
+		}
+
+		case types.NEWS_ARTICLE_RECEIVE: {
+			const { append = false, articles = [] } = payload
+			return newState
+				.update('articles', val => append === true ? val.concat(articles) : List(articles))
 		}
 
 		default:

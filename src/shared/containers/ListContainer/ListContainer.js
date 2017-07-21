@@ -14,7 +14,7 @@ export class ListContainer extends Component {
 
 	handleOnSourceChanged(source) {
 		const { articleActions } = this.props
-		articleActions.selectSource(source)
+		articleActions.selectSourceId(source)
 		articleActions.fetchArticlesBySourceIdAsync(source)
 	}
 

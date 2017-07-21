@@ -13,10 +13,10 @@ export class SourceDropdown extends PureComponent {
 	}
 
 	render() {
-		const { sources } = this.props
+		const { sources, value } = this.props
 		const options = sources.map(source => {
 			const { id, name } = source
-			return (<option key={id} value={id}>{name}</option>)
+			return (<option key={id} value={id} selected={id === value}>{name}</option>)
 		})
 
 		return (
@@ -29,11 +29,13 @@ export class SourceDropdown extends PureComponent {
 SourceDropdown.displayName = 'SourceDropdown'
 SourceDropdown.propTypes = {
 	sources: PropTypes.array.isRequired,
+	value: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired
 }
 SourceDropdown.defaultProps = {
 	sources: [],
 	onChange: noop,
+	value: 'cnn'
 }
 
 export class ListLayout extends Component {
@@ -43,21 +45,22 @@ export class ListLayout extends Component {
 	}
 
 	render() {
-		const { articles, sources } = this.props
+		const { articles, sources, selectedSourceId } = this.props
 
 		return (
 			<div>
 				ListLayout
 				<SourceDropdown
 					sources={sources}
+					value={selectedSourceId}
 					onChange={(source) => this.handleOnSourceDropdowned(source)}
 				/>
 				<ul>
 					{articles.map((article, index) => {
-						const { id, summary } = article
+						const { title } = article
 						return (
-							<li key={id}>
-								<Link to={`/news/${id}`}>{summary}</Link>
+							<li key={title}>
+								<Link to={`/news/${title}`}>{title}</Link>
 							</li>
 						)
 					})}
@@ -71,11 +74,13 @@ ListLayout.displayName = 'ListLayout'
 ListLayout.propTypes = {
 	articles: PropTypes.array.isRequired,
 	sources: PropTypes.array.isRequired,
+	selectedSourceId: PropTypes.string.isRequired,
 	onSourceChanged: PropTypes.func.isRequired,
 }
 ListLayout.defaultProps = {
 	articles: [],
 	sources: [],
+	selectedSourceId: 'cnn',
 	onSourceChanged: noop,
 }
 
