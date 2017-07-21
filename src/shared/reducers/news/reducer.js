@@ -21,8 +21,9 @@ export default function reducer(state = initState, action) {
 		}
 
 		case types.NEWS_SOURCE_OPTIONS_SELECT: {
+			const selected = Array.isArray(payload) ? payload : [payload]
 			return newState
-				.setIn(['sources', 'selected'], List(payload))
+				.setIn(['sources', 'selected'], List(selected))
 		}
 
 		default:

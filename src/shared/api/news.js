@@ -21,3 +21,20 @@ export function fetchSourcesAsync(language = 'en', country = 'us', category = nu
 	const url = urlJoin(NEWS_API_URL, 'sources', `?${stringify(params)}`)
 	return fetch(url, init)
 }
+
+export function fetchArticlesAsync(source = 'cnn', sort = 'popular') {
+	const params = {
+		source,
+		sortBy: sort,
+		apiKey: NEWS_API_KEY
+	}
+
+	const init = {
+		method: 'GET',
+		mode: 'cors',
+		cache: 'default'
+	}
+
+	const url = urlJoin(NEWS_API_URL, 'articles', `?${stringify(params)}`)
+	return fetch(url, init)
+}

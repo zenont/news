@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import appReducer from './app'
-import articleReducer from './article'
+import articleReducer from './news'
 
 export default combineReducers({
 	app: appReducer,
-	article: articleReducer
+	news: articleReducer
 })

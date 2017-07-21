@@ -12,12 +12,22 @@ export class ListContainer extends Component {
 		articleActions.fetchSourceOptionsAsync()
 	}
 
+	handleOnSourceChanged(source) {
+		const { articleActions } = this.props
+		articleActions.selectSource(source)
+		articleActions.fetchArticlesBySourceIdAsync(source)
+	}
+
 	render() {
 		const { articles, sourceOptions } = this.props
 		return (
 			<div>
 				List Coontainer
-				<ListLayout articles={articles} sources={sourceOptions} />
+				<ListLayout
+					articles={articles}
+					sources={sourceOptions}
+					onSourceChanged={(source) => this.handleOnSourceChanged(source)}
+				/>
 			</div>
 		)
 	}
@@ -35,10 +45,10 @@ ListContainer.defaultProps = {
 }
 
 const mapStateToProps = (store) => {
-	const { article } = store
+	const { news } = store
 	return {
-		articles: article.get('articles').toJS(),
-		sourceOptions: article.getIn(['sources', 'options']).toJS()
+		articles: news.get('articles').toJS(),
+		sourceOptions: news.getIn(['sources', 'options']).toJS()
 	}
 }
 
