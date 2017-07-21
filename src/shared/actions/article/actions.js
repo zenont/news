@@ -28,7 +28,6 @@ export function fetchArticlesBySourceIdAsync(sourceId = 'cnn') {
 			.shift()
 
 		const { id = 'cnn', sortBysAvailables = ['top'] } = selectedSource
-		console.log('fetchArticlesBySourceIdAsync', sourceId, id, selectedSource, sourceOptions)
 		dispatch({ type: types.NEWS_ARTICLE_REQUEST })
 		return fetchArticlesAsync(id, sortBysAvailables[0])
 			.then(response => (response.json()), error => dispatch({ type: types.APP_SET_ERROR, payload: error }))
