@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 const rootEpic = combineEpics(
 	newsEpics,
 )
-const epicMiddleware = createEpicMiddleware(newsEpics)
+const epicMiddleware = createEpicMiddleware(rootEpic)
 const middleware = applyMiddleware(thunk)
 export function configureStore() {
 	const store = createStore(
