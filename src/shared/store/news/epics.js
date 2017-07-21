@@ -1,11 +1,15 @@
-import Observable from 'rxjs/observable'
+import 'rxjs/add/operator/mergeMap'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/takeUntil'
+import Observable from 'rxjs/Observable'
 import { combineEpics } from 'redux-observable'
 import { fetchSourcesAsync, fetchArticlesAsync } from './api'
 import * as types from './constants'
 import { requestArticlesFulfilled, requestSourceOptionsFulfilled } from './actions'
 
 export const fetchArticlesEpic = action$ =>
-	action$.ofType(types.NEWS_ARTICLE_REQUEST)
+	action$.ofType(types.NEWS_ARTICLE_FETCH_REQUEST)
 		.mergeMap((action, store) => {
 			const { payload: sourceId } = action
 			const { sources: { options: sourceOptions } } = store.news.toJS()
@@ -14,7 +18,7 @@ export const fetchArticlesEpic = action$ =>
 				.shift()
 			const { id = 'cnn', sortBysAvailables = ['top'] } = selectedSource
 
-			fetchArticlesAsync(id, sortBysAvailables[0])
+			return fetchArticlesAsync(id, sortBysAvailables[0])
 				.map(json => {
 					const { articles } = json
 					requestArticlesFulfilled(articles, false)
@@ -24,13 +28,13 @@ export const fetchArticlesEpic = action$ =>
 					payload: error.xhr.response,
 					error: true
 				}))
-				.takeUntil(action$.ofType(types.NEWS_ARTICLE_CANCELLED))
+				.takeUntil(action$.ofType(types.NEWS_ARTICLE_FETCH_CANCELLED))
 		})
 
 export const fetchSourcesEpic = action$ =>
-	action$.ofType(types.NEWS_SOURCE_OPTIONS_REQUEST)
+	action$.ofType(types.NEWS_SOURCE_OPTIONS_FETCH_REQUEST)
 		.mergeMap((action, store) => {
-			fetchSourcesAsync()
+			return fetchSourcesAsync()
 				.map(json => {
 					const { sources } = json
 					requestSourceOptionsFulfilled(sources)
