@@ -19,13 +19,14 @@ export class ListContainer extends Component {
 	}
 
 	render() {
-		const { articles, sourceOptions } = this.props
+		const { articles, sourceOptions, selectedSource } = this.props
 		return (
 			<div>
 				List Coontainer
 				<ListLayout
 					articles={articles}
 					sources={sourceOptions}
+					selectedSource={selectedSource}
 					onSourceChanged={(source) => this.handleOnSourceChanged(source)}
 				/>
 			</div>
@@ -38,6 +39,7 @@ ListContainer.propTypes = {
 	articles: PropTypes.array.isRequired,
 	articleActions: PropTypes.object.isRequired,
 	sourceOptions: PropTypes.array.isRequired,
+	selectedSource: PropTypes.string.isRequired
 }
 ListContainer.defaultProps = {
 	articles: [],
@@ -48,7 +50,8 @@ const mapStateToProps = (store) => {
 	const { news } = store
 	return {
 		articles: news.get('articles').toJS(),
-		sourceOptions: news.getIn(['sources', 'options']).toJS()
+		sourceOptions: news.getIn(['sources', 'options']).toJS(),
+		selectedSource: news.getIn(['sources', 'selected']),
 	}
 }
 

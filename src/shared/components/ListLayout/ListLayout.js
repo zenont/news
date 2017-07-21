@@ -45,14 +45,14 @@ export class ListLayout extends Component {
 	}
 
 	render() {
-		const { articles, sources, selectedSourceId } = this.props
+		const { articles, sources, selectedSource } = this.props
 
 		return (
 			<div>
 				ListLayout
 				<SourceDropdown
 					sources={sources}
-					value={selectedSourceId}
+					value={selectedSource}
 					onChange={(source) => this.handleOnSourceDropdowned(source)}
 				/>
 				<ul>
@@ -74,13 +74,13 @@ ListLayout.displayName = 'ListLayout'
 ListLayout.propTypes = {
 	articles: PropTypes.array.isRequired,
 	sources: PropTypes.array.isRequired,
-	selectedSourceId: PropTypes.string.isRequired,
+	selectedSource: PropTypes.string.isRequired,
 	onSourceChanged: PropTypes.func.isRequired,
 }
 ListLayout.defaultProps = {
 	articles: [],
 	sources: [],
-	selectedSourceId: 'cnn',
+	selectedSource: 'cnn',
 	onSourceChanged: noop,
 }
 
