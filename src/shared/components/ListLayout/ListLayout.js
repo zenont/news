@@ -16,11 +16,11 @@ export class SourceDropdown extends PureComponent {
 		const { sources, value } = this.props
 		const options = sources.map(source => {
 			const { id, name } = source
-			return (<option key={id} value={id} selected={id === value}>{name}</option>)
+			return (<option key={id} value={id}>{name}</option>)
 		})
 
 		return (
-			<select name="" id="" onChange={e => this.handleChange(e)}>
+			<select value={value} onChange={e => this.handleChange(e)}>
 				{options}
 			</select>
 		)

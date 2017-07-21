@@ -22,7 +22,11 @@ export function fetchSourcesAsync(language = 'en', country = 'us', category = nu
 	return ajax({
 		...settings,
 		url
-	})
+	}).map(ajaxResponse => ({
+		status: ajaxResponse.status,
+		json: ajaxResponse.response.sources,
+		response: ajaxResponse
+	}))
 }
 
 export function fetchArticlesAsync(source = 'cnn', sort = 'popular') {
@@ -36,5 +40,9 @@ export function fetchArticlesAsync(source = 'cnn', sort = 'popular') {
 	return ajax({
 		...settings,
 		url
-	})
+	}).map(ajaxResponse => ({
+		status: ajaxResponse.status,
+		json: ajaxResponse.response.articles,
+		response: ajaxResponse
+	}))
 }
