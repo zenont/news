@@ -6,7 +6,9 @@ export const requestArticles = (sourceId = 'cnn') =>
 export const requestArticlesFulfilled = (articles, append = false) =>
 	({ type: types.NEWS_ARTICLE_FETCH_RECEIVE, payload: { articles, append } })
 
-export const requestSources = () => ({ type: types.NEWS_SOURCE_OPTIONS_REQUEST })
+export const requestSourceOptions = () => ({ type: types.NEWS_SOURCE_OPTIONS_REQUEST })
 
-export const requestSourcesFulfilled = (sources, append = false) =>
+export const requestSourceOptionsFulfilled = (sources, append = false) =>
 	({ type: types.NEWS_SOURCE_OPTIONS_RECEIVE, payload: { sources, append } })
+
+export const selectSourceOption = source => ({ type: types.NEWS_SOURCE_OPTIONS_SELECT, payload: source })

@@ -2,7 +2,7 @@ import Observable from 'rxjs/observable'
 import { combineEpics } from 'redux-observable'
 import { fetchSourcesAsync, fetchArticlesAsync } from './api'
 import * as types from './constants'
-import { requestArticlesFulfilled, requestSourcesFulfilled } from './actions'
+import { requestArticlesFulfilled, requestSourceOptionsFulfilled } from './actions'
 
 export const fetchArticlesEpic = action$ =>
 	action$.ofType(types.NEWS_ARTICLE_REQUEST)
@@ -33,7 +33,7 @@ export const fetchSourcesEpic = action$ =>
 			fetchSourcesAsync()
 				.map(json => {
 					const { sources } = json
-					requestSourcesFulfilled(sources)
+					requestSourceOptionsFulfilled(sources)
 				})
 				.catch(error => Observable.of({
 					type: types.NEWS_SOURCE_OPTIONS_FETCH_REJECTED,

@@ -4,18 +4,18 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import { ListLayout } from '../../components'
-import * as articleActions from '../../actions'
+import * as articleActions from '../../store/news/actions'
 
 export class ListContainer extends Component {
 	componentDidMount() {
 		const { articleActions } = this.props
-		articleActions.fetchSourceOptionsAsync()
+		articleActions.requestSourceOptions()
 	}
 
 	handleOnSourceChanged(source) {
 		const { articleActions } = this.props
-		articleActions.selectSourceId(source)
-		articleActions.fetchArticlesBySourceIdAsync(source)
+		articleActions.selectSourceOption(source)
+		articleActions.requestArticles(source)
 	}
 
 	render() {
