@@ -11,15 +11,8 @@ const rootEpic = combineEpics(
 	newsEpics,
 )
 const epicMiddleware = createEpicMiddleware(rootEpic)
-const middleware = applyMiddleware(thunk)
-export function configureStore() {
-	const store = createStore(
-		rootReducer,
-		applyMiddleware(epicMiddleware)
-	)
-
-	return store
-}
-
-const lol = configureStore()
-export default 	lol
+const middleware = applyMiddleware(thunk, epicMiddleware)
+export default createStore(
+	rootReducer,
+	middleware
+)
