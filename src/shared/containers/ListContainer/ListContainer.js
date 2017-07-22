@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import connect from './selectors'
-import { ListLayout } from '../../components'
+import { ListLayout, NewsView } from '../../components'
+
+const noop = () => { }
 
 export class ListContainer extends Component {
 	componentDidMount() {
@@ -10,17 +12,12 @@ export class ListContainer extends Component {
 	}
 
 	render() {
-		const { articles, categories, sourceOptions, selectedSource, onSourceChanged } = this.props
+		const { articles, categories } = this.props
 		return (
-			<div>
+			<ListLayout>
 				List Coontainer
-				<ListLayout
-					articles={articles}
-					sources={sourceOptions}
-					selectedSource={selectedSource}
-					onSourceChanged={onSourceChanged}
-				/>
-			</div>
+				<NewsView categories={categories} articles={articles} />
+			</ListLayout>
 		)
 	}
 }
@@ -28,14 +25,13 @@ export class ListContainer extends Component {
 ListContainer.displayName = 'ListContainer'
 ListContainer.propTypes = {
 	articles: PropTypes.array.isRequired,
-	onSourceChanged: PropTypes.func.isRequired,
+	categories: PropTypes.array.isRequired,
 	onLoad: PropTypes.func.isRequired,
-	sourceOptions: PropTypes.array.isRequired,
-	selectedSource: PropTypes.string.isRequired
 }
 ListContainer.defaultProps = {
 	articles: [],
-	sourceOptions: []
+	categories: [],
+	onLoad: noop,
 }
 
 export default connect(ListContainer)

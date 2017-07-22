@@ -2,14 +2,21 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { createSelector } from 'reselect'
 import { requestArticles } from '../../store/article/actions'
-import { requestSources } from '../../store/category/actions'
+import { requestSources } from '../../store/source/actions'
 
 const selector = createSelector(
 	store => store.article.get('articles').toArray(),
-	store => store.category.get('categories').toArray(),
-	(articles, categories) => {
+	store => store.source.get('sources').toArray(),
+	(articles, sources) => {
+		const categories = [...new Set(sources.map(source => source.category))]
+			.map(category => ({
+				category,
+				sources: sources.filter(source => source.category === category)
+			}))
+
 		return {
 			articles,
+			sources,
 			categories,
 		}
 	}
@@ -23,11 +30,6 @@ export const mapDispatchToProps = (dispatch) => {
 	return {
 		onLoad: () => {
 			dispatch(requestSources())
-			dispatch(requestArticles())
-		},
-		onSourceChanged: (source) => {
-			dispatch(selectSourceOption(source))
-			dispatch(requestArticles(source))
 		}
 	}
 }

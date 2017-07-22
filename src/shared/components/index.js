@@ -1,2 +1,2 @@
-export { default as ListLayout } from './ListLayout'
-export { default as DetailLayout } from './DetailLayout'
+export * from './Layouts'
+export * from './NewsView'
