@@ -9,20 +9,21 @@ import { Observable } from 'rxjs/Observable'
 import { combineEpics } from 'redux-observable'
 import * as types from './constants'
 import { fetchSourcesAsync } from '../ajax'
-import { requestSourceOptionsFulfilled } from './actions'
+import { requestSourcesFulfilled } from './actions'
 
 export const fetchSourcesEpic = action$ =>
-	action$.ofType(types.NEWS_SOURCE_OPTIONS_FETCH_REQUEST)
+	action$.ofType(types.NEWS_CATEGORY_FETCH_REQUEST)
 		.mergeMap((action, store) =>
 			fetchSourcesAsync()
-			// [...new Set(sourceOptions.map(source => source.category))]
-				.map(response => requestSourceOptionsFulfilled(response.json))
+				.map(response => response.json)
+				.map(json => [...new Set(json.map(source => source.category))])
+				.map(categories => requestSourcesFulfilled(categories))
 				.catch(error => Observable.of({
-					type: types.NEWS_SOURCE_OPTIONS_FETCH_REJECTED,
+					type: types.NEWS_CATEGORY_FETCH_REJECTED,
 					payload: error.xhr.response,
 					error: true
 				}))
-				.takeUntil(action$.ofType(types.NEWS_SOURCE_OPTIONS_FETCH_CANCELLED)))
+				.takeUntil(action$.ofType(types.NEWS_CATEGORY_FETCH_CANCELLED)))
 
 export default combineEpics(
 	fetchSourcesEpic,
