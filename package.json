@@ -11,10 +11,11 @@
 	"scripts": {
 		"test": "test",
 		"cleanup": "rimraf dist",
+		"env-vars":"cross-env NODE_ENV=development",
 		"build:dev:client": "cross-env NODE_ENV=development webpack --config webpack/client/dev.config.babel.js",
 		"build:dev:server": "cross-env NODE_ENV=development cross-env ASSETS_PATH=../dist/assets/ webpack --watch --config webpack/server/dev.config.babel.js",
 		"client-dev-server": "webpack-dev-server --config webpack/client/dev.config.babel.js",
-		"start": "run-s cleanup client-dev-server",
+		"start": "run-s env-vars cleanup client-dev-server",
 		"start:server": "run-s cleanup build:dev:client build:dev:server",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
 	},
@@ -34,6 +35,7 @@
 		"redux": "^3.7.2",
 		"redux-observable": "^0.14.1",
 		"redux-thunk": "^2.2.0",
+		"reselect": "^3.0.1",
 		"rxjs": "^5.4.2",
 		"socket.io": "^2.0.3",
 		"url-join": "^2.0.2",

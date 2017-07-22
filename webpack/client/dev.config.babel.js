@@ -24,7 +24,7 @@ config.entry = {
 		'./index.js',
 	],
 }
-config.devtool = 'eval'
+config.devtool = 'source-map' // 'eval'
 config.plugins = [
 	...config.plugins,
 	envPlugin,

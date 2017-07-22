@@ -13,13 +13,6 @@ const htmlPlugin = new HtmlWebpackPlugin({
 	inject: 'body'
 })
 
-// common chunks
-const commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
-	name: 'commons',
-	filename: 'commons.js',
-	minChunks: 2,
-})
-
 const config = {
 	context: path.join(__dirname, rootPath),
 	entry: {
@@ -85,11 +78,7 @@ const config = {
 		],
 	},
 	plugins: [
-		commonChunksPlugin,
 		htmlPlugin,
-		new webpack.LoaderOptionsPlugin({
-			debug: true
-		})
 	],
 	resolve: {
 		alias: {

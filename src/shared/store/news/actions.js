@@ -12,3 +12,5 @@ export const requestSourceOptionsFulfilled = (sources, append = false) =>
 	({ type: types.NEWS_SOURCE_OPTIONS_FETCH_RECEIVE, payload: { sources, append } })
 
 export const selectSourceOption = source => ({ type: types.NEWS_SOURCE_OPTIONS_SELECT, payload: source })
+
+export const requestArticlesCancel = () => ({ type: types.NEWS_ARTICLE_FETCH_CANCELLED })

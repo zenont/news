@@ -27,7 +27,7 @@ DetailContainer.defaultProps = {
 }
 
 const mapStateToProps = (store) => {
-	const { article } = store
+	const { news } = store
 
 	return {
 		articles: article.get('articles').toJS()
