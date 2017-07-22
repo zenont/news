@@ -10,7 +10,7 @@ export class ListContainer extends Component {
 	}
 
 	render() {
-		const { articles, sourceOptions, selectedSource, onSourceChanged } = this.props
+		const { articles, categories, sourceOptions, selectedSource, onSourceChanged } = this.props
 		return (
 			<div>
 				List Coontainer

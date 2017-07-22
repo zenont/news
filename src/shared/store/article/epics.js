@@ -7,9 +7,9 @@ import 'rxjs/add/operator/distinctUntilChanged'
 import 'rxjs/add/observable/of'
 import { Observable } from 'rxjs/Observable'
 import { combineEpics } from 'redux-observable'
-import { fetchSourcesAsync, fetchArticlesAsync } from './api'
 import * as types from './constants'
-import { requestArticlesFulfilled, requestSourceOptionsFulfilled } from './actions'
+import { fetchArticlesAsync } from '../ajax'
+import { requestArticlesFulfilled } from './actions'
 
 export const fetchArticlesEpic = (action$, { getState }) =>
 	action$.ofType(types.NEWS_ARTICLE_FETCH_REQUEST)
@@ -19,10 +19,10 @@ export const fetchArticlesEpic = (action$, { getState }) =>
 			const selectedSource = sourceOptions
 				.filter(option => option.id === sourceId)
 				.shift()
-
+			const sortBy = selectedSource && selectedSource.sortBysAvailables ? selectedSource.sortBysAvailables : []
 			return {
 				sourceId,
-				sortBy: selectedSource ? selectedSource.sortBysAvailables : []
+				sortBy
 			}
 		})
 		.debounceTime(250)
@@ -37,19 +37,6 @@ export const fetchArticlesEpic = (action$, { getState }) =>
 				}))
 				.takeUntil(action$.ofType(types.NEWS_ARTICLE_FETCH_CANCELLED)))
 
-export const fetchSourcesEpic = action$ =>
-	action$.ofType(types.NEWS_SOURCE_OPTIONS_FETCH_REQUEST)
-		.mergeMap((action, store) =>
-			fetchSourcesAsync()
-				.map(response => requestSourceOptionsFulfilled(response.json))
-				.catch(error => Observable.of({
-					type: types.NEWS_SOURCE_OPTIONS_FETCH_REJECTED,
-					payload: error.xhr.response,
-					error: true
-				}))
-				.takeUntil(action$.ofType(types.NEWS_SOURCE_OPTIONS_FETCH_CANCELLED)))
-
 export default combineEpics(
 	fetchArticlesEpic,
-	fetchSourcesEpic
 )

@@ -1,14 +1,19 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { createEpicMiddleware, combineEpics } from 'redux-observable'
-import { reducer as newsReducer, epics as newsEpics } from './news'
+import { reducer as articleReducer } from './article/reducer'
+import { reducer as categoryReducer } from './caregory/reducer'
+import { epics as articleEpics } from './article/epics'
+import { epics as categoryEpics } from './caregory/epics'
 
 const rootReducer = combineReducers({
-	news: newsReducer
+	artice: articleReducer,
+	category: categoryReducer
 })
 
 const rootEpic = combineEpics(
-	newsEpics,
+	articleEpics,
+	categoryEpics
 )
 const epicMiddleware = createEpicMiddleware(rootEpic)
 const middleware = applyMiddleware(thunk, epicMiddleware)

@@ -10,6 +10,7 @@ const selector = createSelector(
 	(articles, sourceOptions, selectedSource) => {
 		return {
 			articles,
+			categories: [...new Set(sourceOptions.map(source => source.category))],
 			sourceOptions,
 			selectedSource
 		}
