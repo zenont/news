@@ -29,7 +29,7 @@ export function fetchSourcesAsync(language = 'en', country = 'us', category = nu
 	}))
 }
 
-export function fetchArticlesAsync(source = 'cnn', sort = 'popular') {
+export function fetchArticlesAsync(source = 'cnn', sort = null) {
 	const params = {
 		source,
 		sortBy: sort,

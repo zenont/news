@@ -13,22 +13,22 @@ import { requestArticlesFulfilled, requestSourceOptionsFulfilled } from './actio
 
 export const fetchArticlesEpic = (action$, { getState }) =>
 	action$.ofType(types.NEWS_ARTICLE_FETCH_REQUEST)
-		.map((action) => {
-			const state = getState()
+		.map(action => {
 			const { payload: sourceId } = action
-			const { sources: { options: sourceOptions } } = state.news.toJS()
+			const sourceOptions = getState().news.getIn(['sources', 'options']).toArray()
 			const selectedSource = sourceOptions
 				.filter(option => option.id === sourceId)
 				.shift()
-			const { id = 'cnn', sortBysAvailables = ['top'] } = selectedSource
+
 			return {
-				id, sortBysAvailables
+				sourceId,
+				sortBy: selectedSource ? selectedSource.sortBysAvailables : []
 			}
 		})
 		.debounceTime(250)
 		.distinctUntilChanged()
-		.mergeMap(({ id, sortBysAvailables }) =>
-			fetchArticlesAsync(id, sortBysAvailables[0])
+		.mergeMap(({ sourceId, sortBy }) =>
+			fetchArticlesAsync(sourceId, sortBy[0])
 				.map(response => requestArticlesFulfilled(response.json, false))
 				.catch(error => Observable.of({
 					type: types.NEWS_ARTICLE_FETCH_REJECTED,
