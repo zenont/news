@@ -7,6 +7,18 @@ const envPlugin = new webpack.EnvironmentPlugin({
 	DEBUG: false
 })
 
+/*
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		})
+*/
+// common chunks
+const commonChunksPlugin = new webpack.optimize.CommonsChunkPlugin({
+	name: 'commons',
+	filename: 'commons.js',
+	minChunks: 2,
+})
+
 const uglifyPlugin = // minify remove some of the dead code
 	new UglifyJSPlugin({
 		compress: {
@@ -24,6 +36,6 @@ const uglifyPlugin = // minify remove some of the dead code
 		},
 	})
 
-config.plugins = [envPlugin, uglifyPlugin]
+config.plugins = [envPlugin, commonChunksPlugin, uglifyPlugin]
 
 export default config

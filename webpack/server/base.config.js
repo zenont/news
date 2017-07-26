@@ -1,8 +1,8 @@
 const path = require('path')
-import { outputPath, publicPath } from '../paths'
+const fs = require('fs')
+
 /* required hack for server code when running in webpack as described here http://tinyurl.com/ya9jbu97 */
-var fs = require('fs')
-var nodeModules = {}
+let nodeModules = {}
 fs.readdirSync('node_modules')
 	.filter(function (x) {
 		return ['.bin'].indexOf(x) === -1
@@ -11,10 +11,12 @@ fs.readdirSync('node_modules')
 		nodeModules[mod] = 'commonjs ' + mod
 	})
 
-const rootDir = '../../src/server'
+const rootPath = '../../src/server'
+const outputPath = path.join(__dirname, '../../dist/')
+const publicPath = '/'
 
 const config = {
-	context: path.join(__dirname, rootDir),
+	context: path.join(__dirname, rootPath),
 	entry: { server: './index.js' },
 	target: 'node',
 	output: {
@@ -25,6 +27,26 @@ const config = {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.(sass|scss)$/,
+				use: [
+					/*{
+						loader: 'style-loader',
+						options: {
+							sourceMap: true
+						}
+					},*/
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true,
+							importLoaders: 1,
+							sourceMap: false,
+						},
+					},
+					{ loader: 'sass-loader' }
+				]
+			},
 			{
 				test: /\.js$/,
 				exclude: [/node_modules/],
