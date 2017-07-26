@@ -14,6 +14,7 @@ const envPlugin = new webpack.EnvironmentPlugin({
 config.entry = {
 	app: [
 		'babel-polyfill',
+		'react-hot-loader/patch',
 		'./index.js',
 	],
 }
