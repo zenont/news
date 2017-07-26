@@ -1,12 +1,15 @@
+import React from 'react'
 import { Page } from '../components'
 import RootContainer from '../../shared/containers'
 import store from '../../shared/store'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-const middleware = options => {
+const middleware = (options = {}) => {
 	const { redirectCode = 302 } = options
 
 	return (request, response, next) => {
+
+		console.log('lolol', request, response, next)
 		const context = {}
 		const stringifiedHtml = renderToStaticMarkup(
 			<Page>

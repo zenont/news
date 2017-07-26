@@ -2,7 +2,7 @@ import React from 'react'
 import Express from 'express'
 import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
-import ssr from './middlewares'
+import { ssr } from './middlewares'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { Page } from './components'
 import RootContainer from '../shared/containers'
@@ -25,30 +25,7 @@ app.get('/favicon.ico', (req, res) => {
 	res.send(null)
 })
 
-app.get('*', (req, res) => {
-	/*fs.readFile(path.join('./', assetsPath, 'index.html'), 'utf8', (err, data) => {
-		console.log('assetsPath', assetsPath)
-		if (err) {
-			return console.log(err)
-		}
-
-		console.log(data)
-	})*/
-
-	console.log('requesting on', req.url, req.params, req.query)
-	const context = { }
-	const stringifiedHtml = renderToStaticMarkup(
-		<Page>
-			<RootContainer
-				server
-				store={store}
-				context={context}
-				location={req.url}
-			/>
-		</Page>
-	)
-	res.send(stringifiedHtml)
-})
+app.get('*', ssr())
 
 io.on('connection', (socket) => {
 	console.log(`socket ${socket.id} connected!`)
