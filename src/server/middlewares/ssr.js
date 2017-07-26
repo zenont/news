@@ -8,8 +8,6 @@ const middleware = (options = {}) => {
 	const { redirectCode = 302 } = options
 
 	return (request, response, next) => {
-
-		console.log('lolol', request, response, next)
 		const context = {}
 		const stringifiedHtml = renderToStaticMarkup(
 			<Page>

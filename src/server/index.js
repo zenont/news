@@ -1,12 +1,7 @@
-import React from 'react'
 import Express from 'express'
 import { Server as HttpServer } from 'http'
 import { default as SocketIOServer } from 'socket.io'
 import { ssr } from './middlewares'
-import { renderToString, renderToStaticMarkup } from 'react-dom/server'
-import { Page } from './components'
-import RootContainer from '../shared/containers'
-import store from '../shared/store'
 const path = require('path')
 
 const app = new Express()
