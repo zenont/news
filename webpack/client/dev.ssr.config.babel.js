@@ -1,5 +1,9 @@
+const path = require('path')
 import webpack from 'webpack'
 import config from './base.config'
+
+const outputPath = path.join(__dirname, '../../dist/assets')
+const publicPath = '/assets'
 
 const envPlugin = new webpack.EnvironmentPlugin({
 	NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined,
@@ -12,6 +16,11 @@ config.entry = {
 		'babel-polyfill',
 		'./index.js',
 	],
+}
+config.output = {
+	path: outputPath,
+	filename: '[name].js',
+	publicPath: publicPath
 }
 config.devtool = 'source-map' // 'eval'
 config.plugins = [

@@ -11,9 +11,9 @@
 	"scripts": {
 		"test": "test",
 		"cleanup": "rimraf dist",
-		"build-dev-client": "webpack --config webpack/client/dev.config.babel.js",
-		"build-dev-client:ssr": "webpack --config webpack/client/dev.ssr.config.babel.js",
-		"build-dev-server": "webpack --config webpack/server/dev.config.babel.js",
+		"build-client-dev": "webpack --config webpack/client/dev.config.babel.js",
+		"build-client-dev:ssr": "webpack --config webpack/client/dev.ssr.config.babel.js",
+		"build-server-dev": "webpack --config webpack/server/dev.config.babel.js",
 		"local-client": "webpack-dev-server --config webpack/client/dev.config.babel.js",
 		"local-ssr": "webpack --watch --config webpack/server/dev.config.babel.js",
 		"start": "run-s cleanup local-client",
