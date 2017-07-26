@@ -12,6 +12,7 @@ const app = new Express()
 const http = new HttpServer(app)
 const io = new SocketIOServer(http).of('/booty-ws')
 
+console.log('ASSETS PATH', process.env.ASSETS_PATH)
 const assetsPath = path.join(__dirname, process.env.ASSETS_PATH)
 const staticPath = path.join('./', assetsPath)
 app.use('/assets', Express.static(staticPath))

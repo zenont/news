@@ -10,7 +10,6 @@ fs.readdirSync('node_modules')
 	.forEach(function (mod) {
 		nodeModules[mod] = 'commonjs ' + mod
 	})
-
 const rootPath = '../../src/server'
 const outputPath = path.join(__dirname, '../../dist/')
 const publicPath = '/'
@@ -47,12 +46,11 @@ const config = {
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
+						presets: ['es2015', 'stage-0', 'react'],
 						plugins: [
 							'transform-class-properties',
 							'transform-decorators-legacy',
 							'transform-object-rest-spread',
-							'react-hot-loader/babel',
 						],
 						babelrc: false
 					}
