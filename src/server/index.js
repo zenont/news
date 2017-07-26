@@ -6,8 +6,6 @@ import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 import { Page } from './components'
 import RootContainer from '../shared/containers'
 import store from '../shared/store'
-// import favicon from '../shared/assets/favicon.ico'
-// const fs = require('fs')
 const path = require('path')
 
 const app = new Express()
@@ -16,7 +14,6 @@ const io = new SocketIOServer(http).of('/booty-ws')
 
 const assetsPath = path.join(__dirname, process.env.ASSETS_PATH)
 const staticPath = path.join('./', assetsPath)
-console.log('relative lol', staticPath)
 app.use('/assets', Express.static(staticPath))
 
 app.get('/try-me', (req, res) => {

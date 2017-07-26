@@ -30,12 +30,6 @@ const config = {
 			{
 				test: /\.(sass|scss)$/,
 				use: [
-					/*{
-						loader: 'style-loader',
-						options: {
-							sourceMap: true
-						}
-					},*/
 					{
 						loader: 'css-loader',
 						options: {
@@ -53,8 +47,14 @@ const config = {
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [['es2015', { 'modules': false }], 'react', 'stage-0'],
-						plugins: ['transform-class-properties', 'transform-decorators-legacy', 'transform-object-rest-spread']
+						presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
+						plugins: [
+							'transform-class-properties',
+							'transform-decorators-legacy',
+							'transform-object-rest-spread',
+							'react-hot-loader/babel',
+						],
+						babelrc: false
 					}
 				}],
 			},
