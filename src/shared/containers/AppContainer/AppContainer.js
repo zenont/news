@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { IntlProvider, addLocaleData } from 'react-intl'
+import enLocaleData from 'react-intl/locale-data/en'
+import frLocaleData from 'react-intl/locale-data/fr'
+import deLocaleData from 'react-intl/locale-data/de'
 import { AppLayout, LanguageSelector, CountrySelector } from '../../components'
+import messages from '../../i18n'
 import connect from './selectors'
+
+addLocaleData([...enLocaleData, ...frLocaleData, ...deLocaleData])
 
 export class AppContainer extends Component {
 	render() {
 		const { children, langOptions, selectedLang, countryOptions, selectedCountry, onCountryChanged, onLanguageChanged } = this.props
 
 		return (
-			<AppLayout>
-				<LanguageSelector
-					options={langOptions}
-					selected={selectedLang}
-					onChange={onLanguageChanged}
-				/>
-				<CountrySelector
-					options={countryOptions}
-					selected={selectedCountry}
-					onChange={onCountryChanged}
-				/>
-				{children}
-			</AppLayout>
+			<IntlProvider locale={selectedLang} key={selectedLang} messages={messages}>
+				<AppLayout>
+					<LanguageSelector
+						options={langOptions}
+						selected={selectedLang}
+						onChange={onLanguageChanged}
+					/>
+					<CountrySelector
+						options={countryOptions}
+						selected={selectedCountry}
+						onChange={onCountryChanged}
+					/>
+					{children}
+				</AppLayout>
+			</IntlProvider>
 		)
 	}
 }
