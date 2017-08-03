@@ -1,3 +1,4 @@
+import 'rxjs/add/operator/map'
 import urlJoin from 'url-join'
 import { stringify } from 'query-string'
 import { ajax } from 'rxjs/observable/dom/ajax'

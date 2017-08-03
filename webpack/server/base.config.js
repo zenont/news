@@ -10,7 +10,6 @@ fs.readdirSync('node_modules')
 	.forEach(function (mod) {
 		nodeModules[mod] = 'commonjs ' + mod
 	})
-
 const rootPath = '../../src/server'
 const outputPath = path.join(__dirname, '../../dist/')
 const publicPath = '/'
@@ -30,12 +29,6 @@ const config = {
 			{
 				test: /\.(sass|scss)$/,
 				use: [
-					/*{
-						loader: 'style-loader',
-						options: {
-							sourceMap: true
-						}
-					},*/
 					{
 						loader: 'css-loader',
 						options: {
@@ -53,8 +46,13 @@ const config = {
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [['es2015', { 'modules': false }], 'react', 'stage-0'],
-						plugins: ['transform-class-properties', 'transform-decorators-legacy', 'transform-object-rest-spread']
+						presets: ['es2015', 'stage-0', 'react'],
+						plugins: [
+							'transform-class-properties',
+							'transform-decorators-legacy',
+							'transform-object-rest-spread',
+						],
+						babelrc: false
 					}
 				}],
 			},
