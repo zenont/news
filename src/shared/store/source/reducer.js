@@ -47,6 +47,11 @@ export default function reducer(state = initState, action) {
 				.setIn(['language', 'selected'], payload)
 		}
 
+		case types.NEWS_SOURCE_SET_COUNTRY: {
+			return newState
+				.setIn(['country', 'selected'], payload)
+		}
+
 		default:
 			return newState
 	}

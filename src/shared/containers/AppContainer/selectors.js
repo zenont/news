@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { createSelector } from 'reselect'
-import { setCountry, setLanguage } from '../../store/source/actions'
+import { setCountry, setLanguage, requestSources } from '../../store/source/actions'
 
 const selector = createSelector(
 	store => store.source.getIn(['language', 'selected']),
@@ -29,6 +29,7 @@ export const mapDispatchToProps = (dispatch) => {
 		},
 		onLanguageChanged: (language) => {
 			dispatch(setLanguage(language))
+			dispatch(requestSources())
 		}
 	}
 }

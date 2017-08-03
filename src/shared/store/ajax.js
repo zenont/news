@@ -11,7 +11,7 @@ const settings = {
 	responseType: 'json'
 }
 
-export function fetchSourcesAsync(language = 'en', country = 'us', category = null) {
+export function fetchSourcesAsync(language = null, country = null, category = null) {
 	const params = {
 		language,
 		country,
