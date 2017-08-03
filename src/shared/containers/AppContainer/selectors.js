@@ -26,6 +26,7 @@ export const mapDispatchToProps = (dispatch) => {
 	return {
 		onCountryChanged: (country) => {
 			dispatch(setCountry(country))
+			dispatch(requestSources())
 		},
 		onLanguageChanged: (language) => {
 			dispatch(setLanguage(language))

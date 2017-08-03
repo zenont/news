@@ -6,9 +6,9 @@ export const initState = Map({
 		selected: 'us', /* au, de, gb, in, it, us */
 		options: List([
 			{ id: 'us', name: 'USA' },
-			{ id: 'fr', name: 'France' },
 			{ id: 'de', name: 'Germany' },
 			{ id: 'gb', name: 'UK' },
+			{ id: 'au', name: 'Australia' },
 			{ id: 'in', name: 'India' },
 			{ id: 'it', name: 'Italy' },
 		])
