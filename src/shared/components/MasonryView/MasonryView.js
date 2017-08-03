@@ -12,10 +12,8 @@ export class MasonryView extends Component {
 
 	render() {
 		const { categories } = this.props
-		const sections = categories.map(group => {
-			const { category } = group
-			console.log('mapping', group, category)
-			return (<MasonrySection key={category} ></MasonrySection>)
+		const sections = categories.map(category => {
+			return (<MasonrySection key={category} category={category}></MasonrySection>)
 		})
 		return (
 			<article>

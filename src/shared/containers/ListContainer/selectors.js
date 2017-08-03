@@ -9,11 +9,6 @@ const selector = createSelector(
 	store => store.source.get('sources').toArray(),
 	(articles, sources) => {
 		const categories = [...new Set(sources.map(source => source.category))]
-			.map(category => ({
-				category,
-				sources: sources.filter(source => source.category === category)
-			}))
-
 		return {
 			articles,
 			sources,

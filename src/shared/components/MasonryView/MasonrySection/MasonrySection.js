@@ -5,8 +5,8 @@ const noop = () => { }
 
 export class MasonrySection extends Component {
 	componentDidMount() {
-		const { onLoad } = this.props
-		onLoad()
+		const { onLoad, category } = this.props
+		onLoad(category)
 	}
 
 	render() {
