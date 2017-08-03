@@ -9,14 +9,13 @@ import messages from '../../i18n'
 import connect from './selectors'
 
 addLocaleData([...enLocaleData, ...frLocaleData, ...deLocaleData])
-console.log('messages', messages)
 
 export class AppContainer extends Component {
 	render() {
 		const { children, langOptions, selectedLang, countryOptions, selectedCountry, onCountryChanged, onLanguageChanged } = this.props
 
 		return (
-			<IntlProvider locale={selectedLang} key={selectedLang} messages={messages}>
+			<IntlProvider locale={selectedLang} key={selectedLang} messages={messages[selectedLang]}>
 				<AppLayout>
 					<LanguageSelector
 						options={langOptions}
