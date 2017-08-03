@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import connect from './selectors'
-import { ListLayout, NewsView } from '../../components'
+import { ListLayout, MasonryView } from '../../components'
 
 const noop = () => { }
 
@@ -16,7 +16,7 @@ export class ListContainer extends Component {
 		return (
 			<ListLayout>
 				List Container
-				<NewsView categories={categories} articles={articles} />
+				<MasonryView categories={categories} articles={articles} />
 			</ListLayout>
 		)
 	}

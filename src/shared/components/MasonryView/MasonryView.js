@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const noop = () => { }
 
-export class NewsView extends Component {
+export class MasonryView extends Component {
 	componentDidMount() {
 		const { onLoad } = this.props
 		onLoad()
@@ -19,16 +19,16 @@ export class NewsView extends Component {
 	}
 }
 
-NewsView.displayName = 'NewsView'
-NewsView.propTypes = {
+MasonryView.displayName = 'MasonryView'
+MasonryView.propTypes = {
 	articles: PropTypes.array.isRequired,
 	categories: PropTypes.array.isRequired,
 	onLoad: PropTypes.func.isRequired,
 }
-NewsView.defaultProps = {
+MasonryView.defaultProps = {
 	articles: [],
 	categories: [],
 	onLoad: noop,
 }
 
-export default NewsView
+export default MasonryView
