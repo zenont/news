@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
 import { Routes, Router } from '../../common'
+import AppContainer from '../AppContainer'
 
 const RootContainer = ({ store, server, context, location }) => (
 	<Provider store={store}>
 		<Router server={server} context={context} location={location}>
-			<Routes />
+			<AppContainer>
+				<Routes />
+			</AppContainer>
 		</Router>
 	</Provider>
 )

@@ -2,6 +2,8 @@ import { Map, List } from 'immutable'
 import * as types from './constants'
 
 export const initState = Map({
+	country: 'us', /* en, de, fr */
+	language: 'en', /* au, de, gb, in, it, us */
 	sources: List(),
 	fetched: false,
 	fetching: false,

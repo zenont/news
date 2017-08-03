@@ -15,7 +15,7 @@ export class ListContainer extends Component {
 		const { articles, categories } = this.props
 		return (
 			<ListLayout>
-				List Coontainer
+				List Container
 				<NewsView categories={categories} articles={articles} />
 			</ListLayout>
 		)
