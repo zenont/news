@@ -1,18 +1,18 @@
 const messages = {
 	en: {
-		general: 'General',
-		business: 'Business',
-		'science-and-nature': 'Science & Nature'
+		'category.general': 'General',
+		'category.business': 'Business',
+		'category.science-and-nature': 'Science & Nature'
 	},
 	fr: {
-		general: 'Général',
-		business: 'Entreprise',
-		'science-and-nature': 'Science et nature'
+		'category.general': 'Général',
+		'category.business': 'Entreprise',
+		'category.science-and-nature': 'Science et nature'
 	},
 	de: {
-		general: 'General',
-		business: 'Geschäft',
-		'science-and-nature': 'Wissenschaft und Natur'
+		'category.general': 'General',
+		'category.business': 'Geschäft',
+		'category.science-and-nature': 'Wissenschaft und Natur'
 	}
 }
 

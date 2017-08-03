@@ -15,7 +15,7 @@ export class MasonrySection extends Component {
 		return (
 			<section>
 				<p>
-					<FormattedMessage id={category} defaultMessage={category} />
+					<FormattedMessage id={`category.${category}`} defaultMessage={category} />
 				</p>
 			</section>
 		)

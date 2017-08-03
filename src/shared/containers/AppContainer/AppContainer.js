@@ -9,6 +9,7 @@ import messages from '../../i18n'
 import connect from './selectors'
 
 addLocaleData([...enLocaleData, ...frLocaleData, ...deLocaleData])
+console.log('messages', messages)
 
 export class AppContainer extends Component {
 	render() {
