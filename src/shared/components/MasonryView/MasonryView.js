@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import MasonrySection from './MasonrySection'
 
 const noop = () => { }
 
@@ -11,10 +12,15 @@ export class MasonryView extends Component {
 
 	render() {
 		const { categories } = this.props
+		const sections = categories.map(group => {
+			const { category } = group
+			console.log('mapping', group, category)
+			return (<MasonrySection key={category} ></MasonrySection>)
+		})
 		return (
-			<ul>
-				{categories.map(group => (<li key={group.category}>{group.category}</li>))}
-			</ul>
+			<article>
+				{sections}
+			</article>
 		)
 	}
 }

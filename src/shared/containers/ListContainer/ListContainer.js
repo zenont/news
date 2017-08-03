@@ -16,7 +16,7 @@ export class ListContainer extends Component {
 		return (
 			<ListLayout>
 				List Container
-				<MasonryView categories={categories} articles={articles} />
+				<MasonryView categories={categories} />
 			</ListLayout>
 		)
 	}
