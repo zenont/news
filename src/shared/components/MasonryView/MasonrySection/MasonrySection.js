@@ -1,6 +1,6 @@
+import './masonrySection.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage } from 'react-intl'
 
 const noop = () => { }
 
@@ -9,16 +9,20 @@ export class MasonrySection extends Component {
 		const { article } = this.props
 		if (!article) return null
 
-		const { title, description, urlToImage } = article
+		const { title, description, url, urlToImage } = article
 
 		return (
-			<section>
-				<img src={urlToImage} />
-				<h2>{title}</h2>
-				<p>
-					{description}
-				</p>
-			</section>
+			<div className="masonry-section">
+				<a className="masonry-section-url" href={url} target="_blank">
+					<section>
+						<img src={urlToImage} />
+						<h2>{title}</h2>
+						<p>
+							{description}
+						</p>
+					</section>
+				</a>
+			</div>
 		)
 	}
 }
