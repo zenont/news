@@ -1,2 +1,5 @@
 export * from './Layouts'
-export * from './NewsView'
+export * from './MasonryView'
+export { default as MasonryView } from './MasonryView'
+export { default as LanguageSelector } from './LanguageSelector'
+export { default as CountrySelector } from './CountrySelector'

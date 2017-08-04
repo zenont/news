@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable'
 import { combineEpics } from 'redux-observable'
 import * as types from './constants'
 import { fetchArticlesAsync } from '../ajax'
-import { requestArticlesFulfilled } from './actions'
+import { requestTopHeadlinesFulfilled, requestArticlesFulfilled } from './actions'
 
 export const fetchArticlesEpic = (action$, { getState }) =>
 	action$.ofType(types.NEWS_ARTICLE_FETCH_REQUEST)
@@ -31,6 +31,27 @@ export const fetchArticlesEpic = (action$, { getState }) =>
 				}))
 				.takeUntil(action$.ofType(types.NEWS_ARTICLE_FETCH_CANCELLED)))
 
+export const fetchTopHeadlinesEpic = (action$, { getState }) =>
+	action$.ofType(types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REQUEST)
+		.map(() => (getState()))
+		.map(state => {
+			const source = state.article
+				.getIn(['headlines', 'top', 'source'])
+				.toObject()
+			return source
+		})
+		.mergeMap(({ id, sortBy }) =>
+			fetchArticlesAsync(id, sortBy)
+				.map(response => (response.json))
+				.map(json => requestTopHeadlinesFulfilled(json, false))
+				.catch(error => Observable.of({
+					type: types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REJECTED,
+					payload: error.xhr.response,
+					error: true
+				}))
+				.takeUntil(action$.ofType(types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_CANCELLED)))
+
 export default combineEpics(
 	fetchArticlesEpic,
+	fetchTopHeadlinesEpic,
 )
