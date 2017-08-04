@@ -35,7 +35,7 @@ export const fetchTopHeadlinesEpic = (action$, { getState }) =>
 	action$.ofType(types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REQUEST)
 		.map(() => (getState()))
 		.map(state => {
-			const source = getState().news
+			const source = state.article
 				.getIn(['headlines', 'top', 'source'])
 				.toObject()
 			return source

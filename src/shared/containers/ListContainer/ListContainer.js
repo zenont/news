@@ -12,11 +12,11 @@ export class ListContainer extends Component {
 	}
 
 	render() {
-		const { articles, categories } = this.props
+		const { topHeadlines, categories } = this.props
 		return (
 			<ListLayout>
 				List Container
-				<MasonryView categories={categories} />
+				<MasonryView articles={topHeadlines} />
 			</ListLayout>
 		)
 	}
@@ -24,12 +24,12 @@ export class ListContainer extends Component {
 
 ListContainer.displayName = 'ListContainer'
 ListContainer.propTypes = {
-	articles: PropTypes.array.isRequired,
+	topHeadlines: PropTypes.array.isRequired,
 	categories: PropTypes.array.isRequired,
 	onLoad: PropTypes.func.isRequired,
 }
 ListContainer.defaultProps = {
-	articles: [],
+	topHeadlines: [],
 	categories: [],
 	onLoad: noop,
 }

@@ -11,9 +11,10 @@ export class MasonryView extends Component {
 	}
 
 	render() {
-		const { categories } = this.props
-		const sections = categories.map(category => {
-			return (<MasonrySection key={category} category={category}></MasonrySection>)
+		const { articles } = this.props
+		const sections = articles.map(article => {
+			const { url } = article
+			return (<MasonrySection key={url} article={article}></MasonrySection>)
 		})
 		return (
 			<article>
@@ -26,12 +27,10 @@ export class MasonryView extends Component {
 MasonryView.displayName = 'MasonryView'
 MasonryView.propTypes = {
 	articles: PropTypes.array.isRequired,
-	categories: PropTypes.array.isRequired,
 	onLoad: PropTypes.func.isRequired,
 }
 MasonryView.defaultProps = {
 	articles: [],
-	categories: [],
 	onLoad: noop,
 }
 

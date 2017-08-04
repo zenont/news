@@ -5,17 +5,18 @@ import { FormattedMessage } from 'react-intl'
 const noop = () => { }
 
 export class MasonrySection extends Component {
-	componentDidMount() {
-		const { onLoad, category } = this.props
-		onLoad(category)
-	}
-
 	render() {
-		const { category } = this.props
+		const { article } = this.props
+		if (!article) return null
+
+		const { title, description, urlToImage } = article
+
 		return (
 			<section>
+				<img src={urlToImage} />
+				<h2>{title}</h2>
 				<p>
-					<FormattedMessage id={`category.${category}`} defaultMessage={category} />
+					{description}
 				</p>
 			</section>
 		)
@@ -24,7 +25,7 @@ export class MasonrySection extends Component {
 
 MasonrySection.displayName = 'MasonrySection'
 MasonrySection.propTypes = {
-	category: PropTypes.string.isRequired,
+	article: PropTypes.object.isRequired,
 	onLoad: PropTypes.func.isRequired,
 }
 MasonrySection.defaultProps = {

@@ -10,4 +10,4 @@ export const requestTopHeadlines = () =>
 	({ type: types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REQUEST })
 
 export const requestTopHeadlinesFulfilled = (articles, append = false) =>
-	({ type: types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_RECEIVE })
+	({ type: types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_RECEIVE, payload: { articles, append } })
