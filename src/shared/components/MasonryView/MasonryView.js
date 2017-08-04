@@ -1,3 +1,4 @@
+import './masonryView.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import MasonrySection from './MasonrySection'
@@ -17,7 +18,7 @@ export class MasonryView extends Component {
 			return (<MasonrySection key={url} article={article}></MasonrySection>)
 		})
 		return (
-			<article>
+			<article className="masonry-view">
 				{sections}
 			</article>
 		)

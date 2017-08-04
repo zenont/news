@@ -12,17 +12,15 @@ export class MasonrySection extends Component {
 		const { title, description, url, urlToImage } = article
 
 		return (
-			<div className="masonry-section">
+			<section className="masonry-section">
 				<a className="masonry-section-url" href={url} target="_blank">
-					<section>
-						<img src={urlToImage} />
-						<h2>{title}</h2>
-						<p>
-							{description}
-						</p>
-					</section>
+					<img src={urlToImage} />
+					<h2>{title}</h2>
+					<p>
+						{description}
+					</p>
 				</a>
-			</div>
+			</section>
 		)
 	}
 }
