@@ -5,6 +5,10 @@ import PropTypes from 'prop-types'
 const noop = () => { }
 
 export class MasonrySection extends Component {
+	handleOnClick(url) {
+		window.open(url, '_blank')
+	}
+
 	render() {
 		const { article } = this.props
 		if (!article) return null
@@ -12,14 +16,14 @@ export class MasonrySection extends Component {
 		const { title, description, url, urlToImage } = article
 
 		return (
-			<section className="masonry-section">
-				<a className="masonry-section-url" href={url} target="_blank">
-					<img src={urlToImage} />
+			<section className="masonry-section" onClick={() => this.handleOnClick(url)}>
+				<img className="masonry-section-image" src={urlToImage} />
+				<div className="masonry-section-footer">
 					<h2>{title}</h2>
 					<p>
 						{description}
 					</p>
-				</a>
+				</div>
 			</section>
 		)
 	}

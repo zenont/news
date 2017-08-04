@@ -1,7 +1,18 @@
+$max-width: 750px;
+$max-height: 350px;
 .masonry-section {
-	display: inline-block;
-	&-url {
-		color: black;
-		text-decoration: none;
+	position: relative;
+	cursor: pointer;
+	&-footer {
+		background: white;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 60%;
+	}
+	&-image {
+		width: 100%;
+		height: auto;
 	}
 }
