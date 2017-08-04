@@ -16,7 +16,7 @@ export class MasonrySection extends Component {
 		const { title, description, url, urlToImage } = article
 
 		return (
-			<section className="masonry-section" onClick={() => this.handleOnClick(url)}>
+			<div className="masonry-section" onClick={() => this.handleOnClick(url)}>
 				<img className="masonry-section-image" src={urlToImage} />
 				<div className="masonry-section-footer">
 					<h2>{title}</h2>
@@ -24,7 +24,7 @@ export class MasonrySection extends Component {
 						{description}
 					</p>
 				</div>
-			</section>
+			</div>
 		)
 	}
 }

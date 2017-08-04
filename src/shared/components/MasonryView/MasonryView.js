@@ -18,9 +18,9 @@ export class MasonryView extends Component {
 			return (<MasonrySection key={url} article={article}></MasonrySection>)
 		})
 		return (
-			<article className="masonry-view">
+			<div className="masonry-view">
 				{sections}
-			</article>
+			</div>
 		)
 	}
 }
