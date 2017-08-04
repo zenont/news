@@ -1,26 +1,26 @@
 $max-width: 750px;
 $max-height: 350px;
 .masonry-section {
-	position: relative;
-	cursor: pointer;
+    position: relative;
+    cursor: pointer;
     &-footer {
-		overflow: hidden;
+        overflow: hidden;
         opacity: 1;
         background: white;
         position: absolute;
         bottom: 0;
-        //left: 0;
-		//right: 0;
-		//height: 50%;
-        /*p {
-            font-size: 1.6em;
-            position: relative;
-            text-overflow: ellipsis;
-			background: red;
-        }*/
+        left: 0;
+        right: 0;
+        top: 65%;
+        h2 {
+			font-size: 1.4em;
+		}
+        p {
+            display: none;
+        }
     }
     &-image {
-		position: relative;
+        position: relative;
         width: 100%;
         height: auto;
     }
