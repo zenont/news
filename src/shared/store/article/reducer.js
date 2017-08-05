@@ -8,10 +8,20 @@ export const initState = Map({
 	headlines: Map({
 		top: Map({
 			articles: List(),
-			source: Map({
-				id: 'cnn',
-				sortBy: 'top',
-			})
+			sources: List([
+				{
+					id: 'buzzfeed',
+					sortBy: 'top',
+				},
+				{
+					id: 'associated-press',
+					sortBy: 'top'
+				},
+				{
+					id: 'google-news',
+					sortBy: 'top'
+				}
+			])
 		})
 	})
 })

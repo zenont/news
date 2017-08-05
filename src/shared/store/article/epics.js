@@ -35,21 +35,26 @@ export const fetchTopHeadlinesEpic = (action$, { getState }) =>
 	action$.ofType(types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REQUEST)
 		.map(() => (getState()))
 		.map(state => {
-			const source = state.article
-				.getIn(['headlines', 'top', 'source'])
-				.toObject()
-			return source
+			return state.article
+				.getIn(['headlines', 'top', 'sources'])
+				.toArray()
 		})
-		.mergeMap(({ id, sortBy }) =>
-			fetchArticlesAsync(id, sortBy)
-				.map(response => (response.json))
-				.map(json => requestTopHeadlinesFulfilled(json, false))
-				.catch(error => Observable.of({
-					type: types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REJECTED,
-					payload: error.xhr.response,
-					error: true
-				}))
-				.takeUntil(action$.ofType(types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_CANCELLED)))
+		.mergeMap(sources => {
+			const requests = sources.map(source => {
+				const { id, sortBy } = source
+				return fetchArticlesAsync(id, sortBy)
+					.map(response => (response.json))
+					.takeUntil(action$.ofType(types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_CANCELLED))
+			})
+			return Observable.forkJoin(requests)
+		})
+		.map(responses => responses.reduce((a, b) => a.concat(b)))
+		.map(headlines => requestTopHeadlinesFulfilled(headlines, false))
+		.catch(error => Observable.of({
+			type: types.NEWS_ARTICLE_TOP_HEADLINES_FETCH_REJECTED,
+			payload: error.xhr.response,
+			error: true
+		}))
 
 export default combineEpics(
 	fetchArticlesEpic,
