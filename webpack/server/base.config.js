@@ -27,6 +27,14 @@ const config = {
 	module: {
 		rules: [
 			{
+				test: /\.(jpe?g|png|gif|svg|jpg|json)$/i,
+				exclude: /node_modules/,
+				loader: 'file-loader',
+				options: {
+					emitFile: false
+				}
+			},
+			{
 				test: /\.(sass|scss)$/,
 				use: [
 					{
