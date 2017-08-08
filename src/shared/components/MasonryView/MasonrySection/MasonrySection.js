@@ -1,6 +1,7 @@
 import './masonrySection.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cnnLogo from '../../../assets/images/cnn_.png'
 
 const noop = () => { }
 
@@ -18,6 +19,7 @@ export class MasonrySection extends Component {
 		return (
 			<div className="masonry-section" onClick={() => this.handleOnClick(url)}>
 				<img className="masonry-section-image" src={urlToImage} />
+				<img className="masonry-section-logo" src={cnnLogo}/>
 				<div className="masonry-section-footer">
 					<h2>{title}</h2>
 					<p>

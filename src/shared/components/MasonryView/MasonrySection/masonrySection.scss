@@ -13,10 +13,12 @@ $max-height: 350px;
         right: 0;
         top: 65%;
         h2 {
-			font-size: 1.4em;
-		}
+            font-size: 1.4em;
+            color: blue;
+        }
         p {
             display: none;
+            color: blue;
         }
     }
     &-image {
