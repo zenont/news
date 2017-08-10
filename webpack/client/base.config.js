@@ -1,5 +1,5 @@
+import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-const path = require('path')
 
 const rootPath = '../../src/client'
 const outputPath = path.join(__dirname, '../../dist/')
