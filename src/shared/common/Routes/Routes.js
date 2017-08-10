@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import { ListContainer, DetailContainer } from '../../containers'
 
-const RouteWithPayload = () => {
-
-}
-
 export const Routes = ({ url }) => (
 	<Switch>
 		<Route exact path="/" component={ListContainer} />
