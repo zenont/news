@@ -15,7 +15,7 @@ const middleware = (options = {}) => {
 					server
 					store={store}
 					context={context}
-					location={request.url}
+					url={request.url}
 				/>
 			</Page>
 		)

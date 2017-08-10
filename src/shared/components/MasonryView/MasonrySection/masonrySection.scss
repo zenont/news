@@ -26,4 +26,10 @@ $max-height: 350px;
         width: 100%;
         height: auto;
     }
+    &-logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50px;
+    }
 }

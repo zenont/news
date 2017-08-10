@@ -4,11 +4,11 @@ import { Provider } from 'react-redux'
 import { Routes, Router } from '../../common'
 import AppContainer from '../AppContainer'
 
-const RootContainer = ({ store, server, context, location }) => (
+const RootContainer = ({ store, server, context, url }) => (
 	<Provider store={store}>
-		<Router server={server} context={context} location={location}>
+		<Router server={server} context={context} location={url}>
 			<AppContainer>
-				<Routes />
+				<Routes url={url} />
 			</AppContainer>
 		</Router>
 	</Provider>
@@ -18,7 +18,7 @@ RootContainer.displayName = 'RootContainer'
 RootContainer.propTypes = {
 	store: PropTypes.object.isRequired,
 	server: PropTypes.bool.isRequired,
-	location: PropTypes.string,
+	url: PropTypes.string,
 	context: PropTypes.object
 }
 RootContainer.defaultProps = {

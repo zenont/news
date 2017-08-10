@@ -36,7 +36,6 @@ config.devServer = {
 	historyApiFallback: true,
 	hot: true,
 	contentBase: './dist',
-	// inline: true
 }
 
 export default config

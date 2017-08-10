@@ -12,12 +12,12 @@
 		"test": "test",
 		"cleanup": "rimraf dist",
 		"build-client-dev": "webpack --config webpack/client/dev.config.babel.js",
-		"build-client-dev:ssr": "webpack --config webpack/client/dev.ssr.config.babel.js",
+		"build-client-ssr": "webpack --config webpack/client/ssr.config.babel.js",
 		"build-server-dev": "webpack --config webpack/server/dev.config.babel.js",
 		"local-client": "webpack-dev-server --config webpack/client/dev.config.babel.js",
 		"local-ssr": "webpack --watch --config webpack/server/dev.config.babel.js",
 		"start": "run-s cleanup local-client",
-		"ssr": "run-s cleanup build-client-dev:ssr local-ssr",
+		"ssr": "run-s cleanup build-client-ssr local-ssr",
 		"lint": "./node_modules/.bin/eslint **.js src/**.js --fix"
 	},
 	"license": "MIT",
@@ -74,6 +74,7 @@
 		"sass-loader": "^6.0.6",
 		"style-loader": "^0.18.2",
 		"uglifyjs-webpack-plugin": "^0.4.6",
+		"url-loader": "^0.5.9",
 		"webpack": "^3.3.0",
 		"webpack-dev-server": "^2.5.1",
 		"webpack-shell-plugin": "^0.5.0"
