@@ -6,7 +6,7 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{cs,js,jsx}]
+[*.{cs,js,jsx,ts,tsx}]
 indent_size = 4
 charset = utf-8
 spaces_around_brackets = inside
