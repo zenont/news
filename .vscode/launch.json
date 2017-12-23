@@ -1,19 +1,22 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceRoot}/dist/index.html"
-        },
-        {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "webRoot": "${workspaceRoot}"
-        }
+		{
+			"name": "Jest",
+			"type": "node",
+			"request": "launch",
+			"env": { "NODE_ENV": "test" },
+			"args": [
+				"--config=jest/config.json"
+			],
+			"runtimeArgs": [
+			  "--inspect-brk",
+			  "--debug-brk",
+			  "${workspaceRoot}/node_modules/.bin/jest",
+			  "--runInBand"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen"
+		  }
     ]
 }

@@ -1,12 +1,15 @@
 
-import { Source } from './source'
+export class ArticleSource {
+	public id?: string
+	public name: string
+}
 
 export class Article {
-	source?: Source
-	author?: string
-	title: string
-	description: string
-	url: string
-	urlToImage?: string
-	publishedAt: Date
+	public source?: ArticleSource
+	public author?: string
+	public title: string
+	public description: string
+	public url: string
+	public urlToImage?: string
+	public publishedAt: Date
 }
