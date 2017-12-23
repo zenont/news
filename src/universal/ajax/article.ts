@@ -23,3 +23,14 @@ export function fetchTopArticles(...source: string[]): Observable<ArticlePayload
 
 	return ajax.getJSON<ArticlePayloadType>(url).retry(1)
 }
+
+export function fetchArticles(language: string, country: string, ...source: string[]): Observable<ArticlePayloadType | PayloadErrorType> {
+	const { apiKey, apiUrl } = config
+	const sources = source.join(',')
+	const url = Url.of(apiUrl)
+		.route('top-headlines')
+		.query({ sources, apiKey })
+		.stringify()
+
+	return ajax.getJSON<ArticlePayloadType>(url).retry(1)
+}

@@ -64,6 +64,11 @@ exports[`article creators should request 1`] = `
 Object {
   "country": "us",
   "language": "en",
+  "sources": Array [
+    "source1",
+    "source2",
+    "source3",
+  ],
   "type": "ARTICLES/REQUEST",
 }
 `;

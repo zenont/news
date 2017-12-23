@@ -5,8 +5,12 @@ import initState, { IArticleState } from './state'
 export default function reducer(state: IArticleState = initState, action: ArticleActionTypes): IArticleState {
 	switch (action.type) {
 		case ArticleActions.request: {
+			const { country, language, sources } = action
 			return {
 				...state,
+				country,
+				language,
+				sources,
 				fetching: true,
 				fetched: false,
 				error: undefined

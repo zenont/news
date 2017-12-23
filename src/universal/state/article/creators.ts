@@ -2,10 +2,11 @@ import { ArticleActions } from './types'
 import { Article } from '../../model'
 import * as actions from './actions'
 
-export const requestArticles = (language: string, country: string): actions.IArticleRequestAction => ({
+export const requestArticles = (language: string, country: string, ...sources: string[]): actions.IArticleRequestAction => ({
 	type: ArticleActions.request,
 	language,
-	country
+	country,
+	sources
 })
 
 export const requestTopHeadlines = (): actions.IArticleRequestTopHeadlinesAction => ({

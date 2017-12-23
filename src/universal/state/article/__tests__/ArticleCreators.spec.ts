@@ -4,9 +4,7 @@ import { Article } from '../../../model'
 
 describe('article creators', () => {
 	it('should request', () => {
-		const language = 'en'
-		const country = 'us'
-		const action = C.requestArticles(language, country)
+		const action = C.requestArticles('en', 'us', 'source1', 'source2', 'source3')
 		expect(action).toMatchSnapshot()
 	})
 
