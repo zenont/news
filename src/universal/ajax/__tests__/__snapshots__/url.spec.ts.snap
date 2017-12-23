@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Url should stringify 1`] = `"https://newsapi.org/v2/sources?apiKey=12345&country=us&language=en"`;
+
+exports[`Url should stringify with empty query 1`] = `"https://newsapi.org/v2/"`;
+
+exports[`Url should stringify with empty routes 1`] = `"https://newsapi.org/v2/"`;
+
+exports[`Url should stringify with many fluent queries 1`] = `"https://newsapi.org/v2?apiKey=12345&country=us&language=en"`;
+
+exports[`Url should stringify with many fluent routes 1`] = `"https://newsapi.org/v2/sources/cnn/business/top/"`;
+
+exports[`Url should stringify with many routes 1`] = `"https://newsapi.org/v2/sources/cnn/business/top/"`;
+
+exports[`Url should stringify without trailing slash 1`] = `"https://newsapi.org/v2/sources?apiKey=12345&country=us&language=en"`;
