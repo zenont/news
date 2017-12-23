@@ -4,6 +4,8 @@ import { Article } from '../../model'
 
 export interface IArticleRequestAction extends Action {
 	readonly type: ArticleActions.request
+	readonly country: string
+	readonly language: string
 }
 
 export interface IArticleRequestTopHeadlinesAction extends Action {

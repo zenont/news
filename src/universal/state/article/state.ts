@@ -1,6 +1,8 @@
 import { Article } from '../../model'
 
 export interface IArticleState {
+	readonly language: string
+	readonly country: string
 	readonly articles: Article[]
 	readonly fetched: boolean
 	readonly fetching: boolean
@@ -8,6 +10,8 @@ export interface IArticleState {
 }
 
 const initState: IArticleState = {
+	language: 'en',
+	country: 'us',
 	articles: [],
 	fetched: false,
 	fetching: true,
