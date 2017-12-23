@@ -76,7 +76,7 @@
 			}
 		],
 		"arrow-parens": [
-			true
+			false
 		],
 		"max-classes-per-file": [
 			true,

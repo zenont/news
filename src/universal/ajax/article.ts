@@ -1,17 +1,19 @@
 import 'rxjs/add/operator/map'
 import { ajax } from 'rxjs/observable/dom/ajax'
 import { AjaxResponse, Observable } from 'rxjs'
-import { PayloadErrorType, PayloadType } from './payload'
+import { PayloadErrorType, StatusType } from './payload'
 import { Url } from './url'
 import config from './config'
 import { Article, Source } from '../model'
 
-export type ArticlePayload = PayloadType & {
+type PayloadType = {
 	totalResults: number,
 	articles: Article[]
 }
 
-export function fetchTopArticles(...source: string[]): Observable<ArticlePayload | PayloadErrorType> {
+export type ArticlePayloadType = StatusType & PayloadType
+
+export function fetchTopArticles(...source: string[]): Observable<ArticlePayloadType | PayloadErrorType> {
 	const { apiKey, apiUrl } = config
 	const sources = source.join(',')
 	const url = Url.of(apiUrl)
@@ -19,5 +21,5 @@ export function fetchTopArticles(...source: string[]): Observable<ArticlePayload
 		.query({ sources, apiKey })
 		.stringify()
 
-	return ajax.getJSON<ArticlePayload>(url)
+	return ajax.getJSON<ArticlePayloadType>(url).retry(1)
 }

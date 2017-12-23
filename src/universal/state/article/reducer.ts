@@ -13,6 +13,15 @@ export default function reducer(state: IArticleState = initState, action: Articl
 			}
 		}
 
+		case ArticleActions.requestTopHeadlines: {
+			return {
+				...state,
+				fetching: true,
+				fetched: false,
+				error: undefined
+			}
+		}
+
 		case ArticleActions.reject: {
 			const { error } = action
 			return {

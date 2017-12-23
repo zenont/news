@@ -3,7 +3,7 @@ export enum PayloadStatuses {
 	error = 'error'
 }
 
-export type PayloadType = {
+export type StatusType = {
 	status: PayloadStatuses
 }
 
@@ -15,4 +15,4 @@ export type MessageType = {
 	message: string
 }
 
-export type PayloadErrorType = PayloadType & CodeType & MessageType
+export type PayloadErrorType = StatusType & CodeType & MessageType

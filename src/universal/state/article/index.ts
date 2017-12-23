@@ -1,4 +1,5 @@
 export { default } from './reducer'
+export { default as articleEpic } from './epics'
 export { IArticleState } from './state'
 export { ArticleActions } from './types'
 export * from './creators'

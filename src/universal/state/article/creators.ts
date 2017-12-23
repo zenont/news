@@ -1,21 +1,26 @@
 import { ArticleActions } from './types'
 import { Article } from '../../model'
-import * as at from './actions'
+import * as actions from './actions'
 
-export const requestArticles = (): at.IArticleRequestAction => ({
+export const requestArticles = (): actions.IArticleRequestAction => ({
 	type: ArticleActions.request
 })
 
-export const fulfillArticles = (articles: Article[]): at.IArticleFulfillAction => ({
-	type: ArticleActions.fulfill,
-	articles
+export const requestTopHeadlines = (): actions.IArticleRequestTopHeadlinesAction => ({
+	type: ArticleActions.requestTopHeadlines
 })
 
-export const rejectArticles = (error: string | Error | any): at.IArticleRejectAction => ({
+export const fulfillArticles = (articles: Article[], total: number): actions.IArticleFulfillAction => ({
+	type: ArticleActions.fulfill,
+	articles,
+	total
+})
+
+export const rejectArticles = (error: string | Error | any): actions.IArticleRejectAction => ({
 	type: ArticleActions.reject,
 	error
 })
 
-export const cancelArticles = (): at.IArticleCancelAction => ({
+export const cancelArticles = (): actions.IArticleCancelAction => ({
 	type: ArticleActions.cancel
 })

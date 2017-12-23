@@ -1,24 +1,36 @@
 import { Observable } from 'rxjs/Rx'
 import { Action, MiddlewareAPI } from 'redux'
 import { ActionsObservable, Epic, combineEpics } from 'redux-observable'
-import { IRootState } from '../../store'
-import { FacebookActionTypes, IFacebookRejectAuthAction } from '../types'
-import { facebookLogin } from '../../../ajax'
-import { fulfillFacebookAuth, rejectFacebookAuth } from '../creators'
+import { IRootState } from '../store'
+import { ArticleActions } from './types'
+import { IArticleRejectAction } from './actions'
+import { ArticlePayloadType, PayloadErrorType, PayloadStatuses, fetchTopArticles } from '../../ajax'
+import { fulfillArticles, rejectArticles, requestArticles, requestTopHeadlines } from './creators'
 
-export const facebookLoginUser: Epic<Action, IRootState> =
+function isSuccess(payload: ArticlePayloadType | PayloadErrorType): payload is ArticlePayloadType {
+	return (payload as ArticlePayloadType).articles !== undefined
+}
+
+export const requestTopHeadlinesEpic: Epic<Action, IRootState> =
 	(action$: ActionsObservable<Action>, store: MiddlewareAPI<IRootState>) =>
-		action$.ofType(FacebookActionTypes.requestAuth)
+		action$.ofType(ArticleActions.requestTopHeadlines)
 			.mergeMap(() =>
-				facebookLogin()
-					.map(response => fulfillFacebookAuth(response.authResponse.accessToken, response.authResponse.userID))
-					.takeUntil(action$.ofType(FacebookActionTypes.cancelAuth))
-					.catch(error => Observable.of<IFacebookRejectAuthAction>({
-						type: FacebookActionTypes.rejectAuth,
+				fetchTopArticles()
+					.map(response => {
+						if (isSuccess(response)) {
+							return fulfillArticles(response.articles, response.totalResults)
+						} else {
+							const error = (response as PayloadErrorType).message
+							return rejectArticles(error)
+						}
+					})
+					.takeUntil(action$.ofType(ArticleActions.cancel))
+					.catch((error: any) => Observable.of<IArticleRejectAction>({
+						type: ArticleActions.reject,
 						error
 					}))
 			)
 
 export default combineEpics(
-	facebookLoginUser,
+	requestTopHeadlinesEpic,
 )
