@@ -1,16 +1,21 @@
-import { AjaxResponse, Observable } from 'rxjs'
 import 'rxjs/add/operator/map'
 import { ajax } from 'rxjs/observable/dom/ajax'
+import { AjaxResponse, Observable } from 'rxjs'
 import { PayloadType } from './payload'
 import { Source } from '../model'
+import { Url } from './url'
+import config from './config'
 
 export type SourcePayload = PayloadType & {
 	sources: Source[]
 }
 
-// language=en&country=us&apiKey=9ed8490dae88488d98020bd516cbfe47
-export function fetchSources(language: string = 'en', country: string = 'us'): Observable<SourcePayload> | undefined {
-	const apiUrl = process.env.NEWS_API_URL || 'https://newsapi.org/v2/'
-	const appKey = process.env.NEWS_API_KEY || '9ed8490dae88488d98020bd516cbfe47'
-	return undefined
+export function fetchSources(language: string = 'en', country: string = 'us'): Observable<SourcePayload> {
+	const { apiKey, apiUrl } = config
+	const url = Url.of(apiUrl)
+		.route('sources')
+		.query({ language, country, apiKey })
+		.stringify()
+
+	return ajax.getJSON<SourcePayload>(url)
 }
