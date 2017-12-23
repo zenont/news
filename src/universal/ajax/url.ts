@@ -32,6 +32,6 @@ export class Url {
 			return url
 		}
 
-		return `${url}?{query}`
+		return `${url}?${query}`
 	}
 }
