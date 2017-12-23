@@ -1,27 +1,27 @@
 import { Action } from 'redux'
-import { ArticleActionTypes } from './types'
+import { ArticleActions } from './types'
 import { Article } from '../../model'
 
 export interface IArticleRequestAction extends Action {
-	readonly type: ArticleActionTypes.request
+	readonly type: ArticleActions.request
 }
 
-export interface IRequestFulfillAction extends Action {
-	readonly type: ArticleActionTypes.fulfill
+export interface IArticleFulfillAction extends Action {
+	readonly type: ArticleActions.fulfill
 	readonly articles: Article[]
 }
 
 export interface IArticleRejectAction extends Action {
-	readonly type: ArticleActionTypes.reject
+	readonly type: ArticleActions.reject
 	readonly error: string | Error
 }
 
 export interface IArticleCancelAction extends Action {
-	readonly type: ArticleActionTypes.cancel
+	readonly type: ArticleActions.cancel
 }
 
 export type ArticleActionTypes =
 	IArticleRequestAction |
-	IRequestFulfillAction |
+	IArticleFulfillAction |
 	IArticleRejectAction |
 	IArticleCancelAction
