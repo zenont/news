@@ -27,15 +27,24 @@ export function exclude(...phrases: string[]): string {
 	return prepend('-', ...phrases)
 }
 
+function pruneLeadingOperators(...phrases: Array<string | LogicalOperators>): Array<string | LogicalOperators> {
+	if (isLogicalOperator(phrases[0])) {
+		phrases.splice(0, 1)
+		return pruneLeadingOperators(...phrases)
+	}
+	return phrases
+}
+
 export function group(...phrases: Array<string | LogicalOperators>) {
 	if (phrases == null || phrases.length === 0) return ''
 
 	// we get rid of any leading operators
-	if (isLogicalOperator(phrases[0])) {
+	const pruned = pruneLeadingOperators(...phrases)
+	/*if (isLogicalOperator(phrases[0])) {
 		phrases.splice(0, 1)
-	}
+	}*/
 
-	const reduced = phrases
+	const reduced = pruned
 		.reduce((previousValue, currentValue, index, array) => {
 			// we ignore any trailing operators
 			if (index >= array.length - 1 && isLogicalOperator(currentValue)) {

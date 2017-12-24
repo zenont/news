@@ -30,4 +30,9 @@ describe('Keyword', () => {
 		const reduced = group('yay', LogicalOperators.And, 'nay', LogicalOperators.Or)
 		expect(reduced).toEqual('yay AND nay')
 	})
+
+	/*it('should group with invalid operator', () => {
+		const reduced = group('yay', LogicalOperators.And, LogicalOperators.And, 'nay')
+		expect(reduced).toEqual('yay AND nay')
+	})*/
 })
