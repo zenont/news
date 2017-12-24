@@ -13,7 +13,20 @@ type PayloadType = {
 
 export type ArticlePayloadType = StatusType & PayloadType
 
-export function fetchTopArticles(...source: string[]): Observable<ArticlePayloadType | PayloadErrorType> {
+export type
+
+export type FetchTopHeadlinesRequestType = {
+
+}
+
+export type FetchArticleSearchType = {
+	q?: string,
+	language?: string,
+	country?: string,
+	sources?: string[],
+}
+
+export function fetchTopHeadlines(...source: string[]): Observable<ArticlePayloadType | PayloadErrorType> {
 	const { apiKey, apiUrl } = config
 	const sources = source.join(',')
 	const url = Url.of(apiUrl)
