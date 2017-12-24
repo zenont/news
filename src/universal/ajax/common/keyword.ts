@@ -40,14 +40,16 @@ export function group(...phrases: Array<string | LogicalOperators>) {
 
 	// we get rid of any leading operators
 	const pruned = pruneLeadingOperators(...phrases)
-	/*if (isLogicalOperator(phrases[0])) {
-		phrases.splice(0, 1)
-	}*/
+	if (pruned.length === 0) return ''
 
 	const reduced = pruned
 		.reduce((previousValue, currentValue, index, array) => {
+			const isOperator = isLogicalOperator(currentValue)
+			const isPreviousOperator = isLogicalOperator(array[index - 1])
 			// we ignore any trailing operators
-			if (index >= array.length - 1 && isLogicalOperator(currentValue)) {
+			if (index >= array.length - 1 && isOperator === true) {
+				return previousValue
+			} else if (isOperator === true && isPreviousOperator === true) {
 				return previousValue
 			}
 			return `${previousValue} ${currentValue}`

@@ -31,8 +31,23 @@ describe('Keyword', () => {
 		expect(reduced).toEqual('yay AND nay')
 	})
 
-	/*it('should group with invalid operator', () => {
+	it('should group with duplicate operator', () => {
 		const reduced = group('yay', LogicalOperators.And, LogicalOperators.And, 'nay')
 		expect(reduced).toEqual('yay AND nay')
-	})*/
+	})
+
+	it('should group with duplicate trailing operator', () => {
+		const reduced = group('yay', LogicalOperators.Not, 'nay', LogicalOperators.And, LogicalOperators.And)
+		expect(reduced).toEqual('yay NOT nay')
+	})
+
+	it('should not group operators only', () => {
+		const reduced = group(LogicalOperators.And, LogicalOperators.And)
+		expect(reduced).toEqual('')
+	})
+
+	it('should not group single operators', () => {
+		const reduced = group(LogicalOperators.And)
+		expect(reduced).toEqual('')
+	})
 })
