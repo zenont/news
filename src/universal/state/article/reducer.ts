@@ -1,26 +1,16 @@
-import { ArticleActions } from './types'
-import { ArticleActionTypes } from './actions'
+import { ArticleAction, ArticleActions } from './actions'
 import initState from './state'
 import { ArticleState } from '../common'
 
-export default function reducer(state: ArticleState = initState, action: ArticleActionTypes): ArticleState {
+export default function reducer(state: ArticleState = initState, action: ArticleAction): ArticleState {
 	switch (action.type) {
-		case ArticleActions.request: {
-			const { country, language, sources } = action
+		case ArticleActions.requestTopHeadlines: {
+			const {  } = action
 			return {
 				...state,
 				country,
 				language,
 				sources,
-				fetching: true,
-				fetched: false,
-				error: undefined
-			}
-		}
-
-		case ArticleActions.requestTopHeadlines: {
-			return {
-				...state,
 				fetching: true,
 				fetched: false,
 				error: undefined

@@ -5,7 +5,7 @@ import { IRootState } from '../store'
 import { ArticleActions } from './types'
 import { IArticleRejectAction } from './actions'
 import { ArticlePayloadType, PayloadErrorType, PayloadStatuses, fetchTopHeadlines } from '../../ajax'
-import { fulfillArticles, rejectArticles, requestArticles, requestTopHeadlines } from './creators'
+import { fulfillArticles, rejectArticles, requestTopHeadlines, requestTopHeadlines } from './creators'
 
 function isSuccess(payload: ArticlePayloadType | PayloadErrorType): payload is ArticlePayloadType {
 	return (payload as ArticlePayloadType).articles !== undefined

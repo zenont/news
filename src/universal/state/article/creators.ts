@@ -1,16 +1,9 @@
-import { ArticleActions } from './types'
 import { Article } from '../../model'
-import * as actions from './actions'
+import { ArticleTopHeadlinesRequestAction, TopHeadlinesRequest } from './actions'
 
-export const requestArticles = (language: string, country: string, ...sources: string[]): actions.IArticleRequestAction => ({
-	type: ArticleActions.request,
-	language,
-	country,
-	sources
-})
-
-export const requestTopHeadlines = (): actions.IArticleRequestTopHeadlinesAction => ({
-	type: ArticleActions.requestTopHeadlines
+export const requestTopHeadlines = (request: TopHeadlinesRequest): ArticleTopHeadlinesRequestAction => ({
+	...new ArticleTopHeadlinesRequestAction(),
+	...request
 })
 
 export const fulfillArticles = (articles: Article[], total: number): actions.IArticleFulfillAction => ({
