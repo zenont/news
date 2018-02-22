@@ -51,28 +51,29 @@ export class ArticleTopHeadlinesRequestAction extends TopHeadlinesRequest implem
 	public readonly type = ArticleActions.requestTopHeadlines
 }
 
-export class ArticleEverythingRequestAction implements Action {
+export class ArticleEverythingRequestAction extends EverythingRequest implements Action {
 	public readonly type = ArticleActions.requestEverything
 }
 
-export class IArticleFulfillAction implements Action {
+export class ArticleFulfillAction implements Action {
 	public readonly type = ArticleActions.fulfill
 	constructor(
 		public readonly articles: ReadonlyArray<Article>,
 		public readonly total: number) { }
 }
 
-export class IArticleRejectAction implements Action {
+export class ArticleRejectAction implements Action {
 	public readonly type = ArticleActions.reject
 	constructor(public readonly error?: string | Error | null) { }
 }
 
-export class IArticleCancelAction implements Action {
+export class ArticleCancelAction implements Action {
 	public readonly type = ArticleActions.cancel
 }
 
 export type ArticleAction =
 	ArticleTopHeadlinesRequestAction |
-	IArticleFulfillAction |
-	IArticleRejectAction |
-	IArticleCancelAction
+	ArticleEverythingRequestAction |
+	ArticleFulfillAction |
+	ArticleRejectAction |
+	ArticleCancelAction

@@ -80,7 +80,7 @@
 		],
 		"max-classes-per-file": [
 			true,
-			5
+			10
 		],
 		"no-duplicate-super": false,
 		"jsx-no-lambda": false,

@@ -8,6 +8,7 @@ export type ArticleState = {
 	readonly fetched: boolean
 	readonly fetching: boolean
 	readonly error?: string | Error | null
+	readonly total: number
 }
 
 export type RootState = {

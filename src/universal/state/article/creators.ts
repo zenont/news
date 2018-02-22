@@ -1,22 +1,21 @@
 import { Article } from '../../model'
-import { ArticleTopHeadlinesRequestAction, TopHeadlinesRequest } from './actions'
+import * as actions from './actions'
 
-export const requestTopHeadlines = (request: TopHeadlinesRequest): ArticleTopHeadlinesRequestAction => ({
-	...new ArticleTopHeadlinesRequestAction(),
+export const requestTopHeadlines = (request: actions.TopHeadlinesRequest): actions.ArticleTopHeadlinesRequestAction => ({
+	...new actions.ArticleTopHeadlinesRequestAction(),
 	...request
 })
 
-export const fulfillArticles = (articles: Article[], total: number): actions.IArticleFulfillAction => ({
-	type: ArticleActions.fulfill,
-	articles,
-	total
+export const requestArticles = (request: actions.EverythingRequest): actions.ArticleEverythingRequestAction => ({
+	...new actions.ArticleEverythingRequestAction(),
+	...request
 })
 
-export const rejectArticles = (error: string | Error | any): actions.IArticleRejectAction => ({
-	type: ArticleActions.reject,
-	error
-})
+export const fulfillArticles = (articles: Article[], total: number): actions.ArticleFulfillAction =>
+	new actions.ArticleFulfillAction(articles, total)
 
-export const cancelArticles = (): actions.IArticleCancelAction => ({
-	type: ArticleActions.cancel
-})
+export const rejectArticles = (error?: string | Error | null): actions.ArticleRejectAction =>
+	new actions.ArticleRejectAction(error)
+
+export const cancelArticles = (): actions.ArticleCancelAction =>
+	new actions.ArticleCancelAction()

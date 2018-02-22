@@ -3,7 +3,7 @@ import { Action, MiddlewareAPI } from 'redux'
 import { ActionsObservable, Epic, combineEpics } from 'redux-observable'
 import { IRootState } from '../store'
 import { ArticleActions } from './types'
-import { IArticleRejectAction } from './actions'
+import { ArticleRejectAction } from './actions'
 import { ArticlePayloadType, PayloadErrorType, PayloadStatuses, fetchTopHeadlines } from '../../ajax'
 import { fulfillArticles, rejectArticles, requestTopHeadlines, requestTopHeadlines } from './creators'
 
@@ -25,7 +25,7 @@ export const requestTopHeadlinesEpic: Epic<Action, IRootState> =
 						}
 					})
 					.takeUntil(action$.ofType(ArticleActions.cancel))
-					.catch((error: any) => Observable.of<IArticleRejectAction>({
+					.catch((error: any) => Observable.of<ArticleRejectAction>({
 						type: ArticleActions.reject,
 						error
 					}))

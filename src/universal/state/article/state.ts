@@ -8,7 +8,8 @@ const initState: ArticleState = {
 	articles: [],
 	fetched: false,
 	fetching: true,
-	error: undefined
+	error: undefined,
+	total: 0
 }
 
 export default initState
