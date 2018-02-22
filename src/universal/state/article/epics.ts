@@ -14,7 +14,7 @@ function isSuccess(payload: ArticlePayloadType | PayloadErrorType): payload is A
 export const requestTopHeadlinesEpic: Epic<Action, IRootState> =
 	(action$: ActionsObservable<Action>, store: MiddlewareAPI<IRootState>) =>
 		action$.ofType(ArticleActions.requestTopHeadlines)
-			.mergeMap(() =>
+			.switchMap(() =>
 				fetchTopHeadlines()
 					.map(response => {
 						if (isSuccess(response)) {

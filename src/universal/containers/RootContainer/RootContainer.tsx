@@ -1,4 +1,4 @@
-import React, { Component, Props, Fragment } from 'react'
+import React, { Component, Fragment, Props } from 'react'
 import { Provider } from 'react-redux'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import en from 'react-intl/locale-data/en'

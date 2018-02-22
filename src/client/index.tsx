@@ -1,13 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import store from '../shared/store'
-import RootContainer from '../shared/containers'
+import store from '../universal/state'
+import RootContainer from '../universal/containers'
 import { AppContainer } from 'react-hot-loader'
-import '../shared/assets/favicon.ico'
+import '../universal/assets/favicon.ico'
 
 const app = document.getElementById('app')
 
-const hotRender = Component => {
+// tslint:disable-next-line:variable-name
+const hotRender = (Component: any) => {
 	render(
 		<AppContainer>
 			<Component server={false} store={store} />

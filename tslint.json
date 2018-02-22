@@ -86,7 +86,8 @@
 		"jsx-no-lambda": false,
 		"no-submodule-imports": [
 			true,
-			"rxjs"
+			"rxjs",
+			"react-intl"
 		],
 		"interface-over-type-literal": false,
 		"jsRules": {
@@ -95,6 +96,10 @@
 					150
 				]
 			}
-		}
+		},
+		"no-implicit-dependencies": [
+			true,
+			"dev"
+		]
 	}
 }
