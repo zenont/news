@@ -1,8 +1,9 @@
 import { ArticleActions } from './types'
 import { ArticleActionTypes } from './actions'
-import initState, { IArticleState } from './state'
+import initState from './state'
+import { ArticleState } from '../common'
 
-export default function reducer(state: IArticleState = initState, action: ArticleActionTypes): IArticleState {
+export default function reducer(state: ArticleState = initState, action: ArticleActionTypes): ArticleState {
 	switch (action.type) {
 		case ArticleActions.request: {
 			const { country, language, sources } = action

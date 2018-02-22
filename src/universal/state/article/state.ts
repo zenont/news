@@ -1,16 +1,7 @@
+import { ArticleState } from '../common'
 import { Article } from '../../model'
 
-export interface IArticleState {
-	readonly language: string
-	readonly country: string
-	readonly sources: ReadonlyArray<string>
-	readonly articles: Article[]
-	readonly fetched: boolean
-	readonly fetching: boolean
-	readonly error: string | Error | any | undefined
-}
-
-const initState: IArticleState = {
+const initState: ArticleState = {
 	language: 'en',
 	country: 'us',
 	sources: ['cnn', 'msnbc', 'abc-news', 'bloomberg', 'politico', 'reuters', 'time'],
