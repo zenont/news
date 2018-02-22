@@ -2,7 +2,7 @@ import { ArticleAction, ArticleActions } from './actions'
 import initState from './state'
 import { ArticleState } from '../common'
 
-export default function reducer(state: ArticleState = initState, action: ArticleAction): ArticleState {
+export default (state: ArticleState = initState, action: ArticleAction): ArticleState => {
 	switch (action.type) {
 		case ArticleActions.requestEverything:
 		case ArticleActions.requestTopHeadlines: {
