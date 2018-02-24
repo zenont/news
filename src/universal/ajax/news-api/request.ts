@@ -16,22 +16,28 @@ export type Keywords = {
 	readonly not?: ReadonlyArray<string>
 }
 
-export class TopHeadlinesRequest {
-	public readonly country?: Country
-	public readonly category?: Category
-	public readonly sources?: ReadonlyArray<string>
-	public readonly pageSize?: number
-	public readonly page?: number
+export type TopHeadlinesRequest = {
+	readonly country?: Country
+	readonly category?: Category
+	readonly sources?: ReadonlyArray<string>
+	readonly pageSize?: number
+	readonly page?: number
 }
 
-export class EverythingRequest {
-	public readonly q?: Keywords
-	public readonly sources?: ReadonlyArray<string>
-	public readonly domains?: ReadonlyArray<string>
-	public readonly from?: Date
-	public readonly to?: Date
-	public readonly language?: Language
-	public readonly sortBy?: SortBy
-	public readonly pageSize?: number
-	public readonly page?: number
+export type EverythingRequest = {
+	readonly q?: Keywords
+	readonly sources?: ReadonlyArray<string>
+	readonly domains?: ReadonlyArray<string>
+	readonly from?: Date
+	readonly to?: Date
+	readonly language?: Language
+	readonly sortBy?: SortBy
+	readonly pageSize?: number
+	readonly page?: number
+}
+
+export type SourcesRequest = {
+	readonly category: Category
+	readonly language: Language
+	readonly country: Country
 }

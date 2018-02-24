@@ -1,15 +1,15 @@
 
-export class ArticleSource {
-	public id?: string
-	public name: string
+export type ArticleSource = {
+	readonly id?: string
+	readonly name: string
 }
 
-export class Article {
-	public source?: ArticleSource
-	public author?: string
-	public title: string
-	public description: string
-	public url: string
-	public urlToImage?: string
-	public publishedAt: Date
+export type Article = {
+	readonly source?: ArticleSource
+	readonly author?: string
+	readonly title: string
+	readonly description: string
+	readonly url: string
+	readonly urlToImage?: string
+	readonly publishedAt: Date
 }

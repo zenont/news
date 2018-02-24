@@ -23,3 +23,8 @@ export type ArticleResponse = ResponseStatus & {
 	readonly totalResults: number,
 	readonly articles: Article[]
 }
+
+export type SourcesResponse = ResponseStatus & {
+	readonly totalResults: number,
+	readonly sources: Source[]
+}
