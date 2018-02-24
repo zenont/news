@@ -1,33 +1,31 @@
-import { Observable } from 'rxjs/Observable'
-import { map } from 'rxjs/operator/map'
-import { switchMap } from 'rxjs/operator/switchMap'
+import { takeUntil } from 'rxjs/operators/takeUntil'
 import { Action, MiddlewareAPI } from 'redux'
+import { map } from 'rxjs/operators/map'
+import { switchMap } from 'rxjs/operators/switchMap'
+import { catchError } from 'rxjs/operators/catchError'
+import { AjaxResponse } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
+import { of } from 'rxjs/observable/of'
 import { ActionsObservable, Epic, combineEpics } from 'redux-observable'
-import { RootState } from '../../common'
-import { ArticleAction, ArticleTopHeadlinesRequestAction } from '../actions'
-import { fetchTopHeadlines } from '../../../ajax'
+import { ArticleAction, ArticleActions, ArticleTopHeadlinesRequestAction } from '../actions'
 import { fulfillArticles, rejectArticles } from '../creators'
+import { RootState } from '../../common'
+import { IAjaxArticleResponse, IAjaxErrorResponse, fetchTopHeadlines, isArticleResponse, isErrorResponse } from '../../../ajax'
+
+const mapAjaxResponse$ = map<IAjaxArticleResponse | IAjaxErrorResponse, ArticleAction>(ajaxResp =>
+	isArticleResponse(ajaxResp) ? fulfillArticles(ajaxResp.response.articles, ajaxResp.response.totalResults) : rejectArticles(ajaxResp.response.code)
+)
 
 export const requestTopHeadlinesEpic: Epic<ArticleAction, RootState> =
 	(action$, store) =>
 		action$.ofType<ArticleTopHeadlinesRequestAction>()
-/*.pipe(map(action => action))
-.pipe(switchMap(() =>
-	fetchTopHeadlines()
-		.map(response => {
-			if (isSuccess(response)) {
-				return fulfillArticles(response.articles, response.totalResults)
-			} else {
-				const error = (response as PayloadErrorType).message
-				return rejectArticles(error)
-			}
-		})
-		.takeUntil(action$.ofType(ArticleActions.cancel))
-		.catch((error: any) => Observable.of<ArticleRejectAction>({
-			type: ArticleActions.reject,
-			error
-		}))
-))*/
+			.pipe(map(action => action))
+			.pipe(switchMap(request =>
+				fetchTopHeadlines(request)
+					.pipe(mapAjaxResponse$)
+					.pipe(catchError(error => of(rejectArticles(error))))
+					.pipe(takeUntil(action$.ofType(ArticleActions.cancel)))
+			))
 
 export default combineEpics(
 	requestTopHeadlinesEpic,

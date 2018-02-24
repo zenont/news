@@ -5,9 +5,9 @@ import { stringify } from 'query-string'
 import urlJoin from 'url-join'
 import { config } from './config'
 import { TopHeadlinesRequest } from './request'
-import { ErrorResponse, SourcesResponse } from './response'
+import { IAjaxErrorResponse, IAjaxSourceResponse } from './response'
 
-export function fetchSources(request: TopHeadlinesRequest): Observable<SourcesResponse | ErrorResponse> {
+export function fetchSources(request: TopHeadlinesRequest): Observable<IAjaxSourceResponse | IAjaxErrorResponse> {
 	const { apiKey, apiUrl } = config
 	const query = stringify({
 		...request,
@@ -15,6 +15,5 @@ export function fetchSources(request: TopHeadlinesRequest): Observable<SourcesRe
 	})
 
 	const url = `${urljoin(apiUrl, 'sources')}?${query}`
-	return ajax.getJSON<SourcesResponse>(url).
-		retry(1)
+	return ajax.getJSON<IAjaxSourceResponse | IAjaxErrorResponse>(url)
 }
