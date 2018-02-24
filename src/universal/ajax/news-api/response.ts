@@ -1,4 +1,4 @@
-import { Article, Source } from '../../../model'
+import { Article, Source } from '../../model'
 
 export enum ResponseStatuses {
 	ok = 'ok',
