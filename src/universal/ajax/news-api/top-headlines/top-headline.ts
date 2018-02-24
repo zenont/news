@@ -2,9 +2,9 @@ import 'rxjs/add/operator/map'
 import { ajax } from 'rxjs/observable/dom/ajax'
 import { Observable } from 'rxjs'
 import { Url } from '../../common'
-import { ArticleResponseType, ResponseErrorType, config } from '../common'
+import { ArticleResponse, ResponseError, config } from '../common'
 
-export function fetchTopHeadlines(...source: string[]): Observable<ArticleResponseType | ResponseErrorType> {
+export function fetchTopHeadlines(...source: string[]): Observable<ArticleResponse | ResponseError> {
 	const { apiKey, apiUrl } = config
 	const sources = source.join(',')
 	const url = Url.of(apiUrl)
@@ -12,6 +12,6 @@ export function fetchTopHeadlines(...source: string[]): Observable<ArticleRespon
 		.query({ sources, apiKey })
 		.stringify()
 
-	return ajax.getJSON<ArticleResponseType>(url).
+	return ajax.getJSON<ArticleResponse>(url).
 		retry(1)
 }

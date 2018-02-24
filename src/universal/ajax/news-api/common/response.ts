@@ -5,21 +5,21 @@ export enum ResponseStatuses {
 	error = 'error'
 }
 
-export type ResponseStatusType = {
-	status: ResponseStatuses
+export type ResponseStatus = {
+	readonly status: ResponseStatuses
 }
 
-export type ResponseCodeType = {
-	code: string
+export type ResponseCode = {
+	readonly code: string
 }
 
-export type ResponseMessageType = {
-	message: string
+export type ResponseMessage = {
+	readonly message: string
 }
 
-export type ResponseErrorType = ResponseStatusType & ResponseCodeType & ResponseMessageType
+export type ResponseError = ResponseStatus & ResponseCode & ResponseMessage
 
-export type ArticleResponseType = ResponseStatusType & {
-	totalResults: number,
-	articles: Article[]
+export type ArticleResponse = ResponseStatus & {
+	readonly totalResults: number,
+	readonly articles: Article[]
 }

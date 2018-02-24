@@ -2,9 +2,9 @@ import 'rxjs/add/operator/map'
 import { ajax } from 'rxjs/observable/dom/ajax'
 import { Observable } from 'rxjs'
 import { Url } from '../../common'
-import { ArticleResponseType, EverythingRequestType, ResponseErrorType, config } from '../common'
+import { ArticleResponse, EverythingRequestType, ResponseError, config } from '../common'
 
-export function fetchEverything(request: EverythingRequestType): Observable<ArticleResponseType | ResponseErrorType> {
+export function fetchEverything(request: EverythingRequestType): Observable<ArticleResponse | ResponseError> {
 	const { apiKey, apiUrl } = config
 	const { country,  } = request
 	const url = Url.of(apiUrl)
@@ -12,5 +12,5 @@ export function fetchEverything(request: EverythingRequestType): Observable<Arti
 		.query({ sources, apiKey })
 		.stringify()
 
-	return ajax.getJSON<ArticleResponseType>(url).retry(1)
+	return ajax.getJSON<ArticleResponse>(url).retry(1)
 }

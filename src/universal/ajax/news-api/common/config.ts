@@ -1,7 +1,7 @@
 
 export interface IAjaxConfig {
-	apiUrl: string
-	apiKey: string
+	readonly apiUrl: string
+	readonly apiKey: string
 }
 
 export const config: IAjaxConfig = {
