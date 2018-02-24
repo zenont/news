@@ -28,3 +28,15 @@ export type SourcesResponse = ResponseStatus & {
 	readonly totalResults: number,
 	readonly sources: Source[]
 }
+
+const isArticleResponse = (response: ArticleResponse | ErrorResponse): response is ArticleResponse =>
+	(response as ArticleResponse).articles !== undefined
+
+const isSourcesResponse = (response: SourcesResponse | ErrorResponse): response is SourcesResponse =>
+	(response as SourcesResponse).sources !== undefined
+
+const isErrorResponse = (response: any): response is ErrorResponse =>
+	(response as ErrorResponse).message !== undefined &&
+	(response as ErrorResponse).code !== undefined &&
+	(response as ErrorResponse).status !== undefined
+
