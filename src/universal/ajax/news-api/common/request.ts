@@ -11,9 +11,9 @@ export type Country =
 	'ae' | 'ar' | 'at' | 'au' | 'be' | 'bg' | 'br' | 'ca' | 'ch' | 'cn' | 'de' | 'eg' | 'fr' | 'gb' | 'ru' | 'us'
 
 export type Keywords = {
-	exact?: ReadonlyArray<string>
-	must?: ReadonlyArray<string>
-	not?: ReadonlyArray<string>
+	readonly exact?: ReadonlyArray<string>
+	readonly must?: ReadonlyArray<string>
+	readonly not?: ReadonlyArray<string>
 }
 
 export class TopHeadlinesRequest {

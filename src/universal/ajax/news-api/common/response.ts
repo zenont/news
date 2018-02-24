@@ -17,7 +17,7 @@ export type ResponseMessage = {
 	readonly message: string
 }
 
-export type ResponseError = ResponseStatus & ResponseCode & ResponseMessage
+export type ErrorResponse = ResponseStatus & ResponseCode & ResponseMessage
 
 export type ArticleResponse = ResponseStatus & {
 	readonly totalResults: number,
