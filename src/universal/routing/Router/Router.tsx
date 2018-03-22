@@ -1,5 +1,6 @@
 import React, { ReactNode, StatelessComponent } from 'react'
 import PropTypes from 'prop-types'
+import { StaticRouterProps } from 'react-router'
 import { BrowserRouter, BrowserRouterProps, HashRouterProps, RouteComponentProps, StaticRouter } from 'react-router-dom'
 
 export interface IRouterProps {
@@ -9,6 +10,7 @@ export interface IRouterProps {
 	readonly children?: ReactNode
 }
 
+/* tslint:disable-next-line:variable-name */
 export const Router: StatelessComponent<IRouterProps> = ({ server, children, context, location }) => {
 	if (server === true) {
 		return (
