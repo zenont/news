@@ -4,11 +4,11 @@ import { Route, Switch } from 'react-router-dom'
 import { DetailContainer, ListContainer } from '../../containers'
 
 export interface IRoutesProps {
-	readonly url: string
+
 }
 
 // tslint:disable-next-line:variable-name
-export const Routes: StatelessComponent<IRoutesProps> = ({ url }) => (
+export const Routes: StatelessComponent<IRoutesProps> = () => (
 	<Switch>
 		<Route exact path="/" component={ListContainer} />
 		<Route exact path="/news" component={ListContainer} />
@@ -18,7 +18,7 @@ export const Routes: StatelessComponent<IRoutesProps> = ({ url }) => (
 
 Routes.displayName = 'Routes'
 Routes.propTypes = {
-	url: PropTypes.string
+
 }
 
 export default Routes
