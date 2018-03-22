@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { StatelessComponent } from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
-import { ListContainer, DetailContainer } from '../../containers'
+import { Route, Switch } from 'react-router-dom'
+import { DetailContainer, ListContainer } from '../../containers'
 
-export const Routes = ({ url }) => (
+export interface IRoutesProps {
+	readonly url: string
+}
+
+// tslint:disable-next-line:variable-name
+export const Routes: StatelessComponent<IRoutesProps> = ({ url }) => (
 	<Switch>
 		<Route exact path="/" component={ListContainer} />
 		<Route exact path="/news" component={ListContainer} />

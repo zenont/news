@@ -100,6 +100,9 @@
 		"no-implicit-dependencies": [
 			true,
 			"dev"
+		],
+		"jsx-boolean-value":[
+			false
 		]
 	}
 }
