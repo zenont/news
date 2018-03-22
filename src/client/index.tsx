@@ -20,5 +20,5 @@ const hotRender = (Component: any) => {
 hotRender(RootContainer)
 
 if (module.hot) {
-	module.hot.accept('../shared/containers', () => hotRender(RootContainer))
+	module.hot.accept('../universal/containers', () => hotRender(RootContainer))
 }
