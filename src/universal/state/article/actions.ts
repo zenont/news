@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { Article } from '../../model'
+import { Article, Category, Country, Keywords, Language, SortBy } from '../../model'
 
 export enum ArticleActions {
 	requestTopHeadlines = 'ARTICLES/REQUEST_TOP_HEADLINES',
@@ -7,24 +7,6 @@ export enum ArticleActions {
 	fulfill = 'ARTICLES/FULFILL',
 	reject = 'ARTICLES/REJECT',
 	cancel = 'ARTICLES/CANCEL',
-}
-
-export type Language =
-	'ar' | 'de' | 'en' | 'es' | 'fr' | 'he' | 'it' | 'nl' | 'no' | 'pt' | 'ru' | 'se' | 'ud' | 'zh'
-
-export type SortBy =
-	'relevancy' | 'popularity' | 'publishedAt'
-
-export type Category =
-	'business' | 'entertainment' | 'general' | 'health' | 'science' | 'sports' | 'technology'
-
-export type Country =
-	'ae' | 'ar' | 'at' | 'au' | 'be' | 'bg' | 'br' | 'ca' | 'ch' | 'cn' | 'de' | 'eg' | 'fr' | 'gb' | 'ru' | 'us'
-
-export type Keywords = {
-	exact?: ReadonlyArray<string>
-	must?: ReadonlyArray<string>
-	not?: ReadonlyArray<string>
 }
 
 export class TopHeadlinesRequest {

@@ -1,20 +1,4 @@
-export type Language =
-	'ar' | 'de' | 'en' | 'es' | 'fr' | 'he' | 'it' | 'nl' | 'no' | 'pt' | 'ru' | 'se' | 'ud' | 'zh'
-
-export type SortBy =
-	'relevancy' | 'popularity' | 'publishedAt'
-
-export type Category =
-	'business' | 'entertainment' | 'general' | 'health' | 'science' | 'sports' | 'technology'
-
-export type Country =
-	'ae' | 'ar' | 'at' | 'au' | 'be' | 'bg' | 'br' | 'ca' | 'ch' | 'cn' | 'de' | 'eg' | 'fr' | 'gb' | 'ru' | 'us'
-
-export type Keywords = {
-	readonly exact?: ReadonlyArray<string>
-	readonly must?: ReadonlyArray<string>
-	readonly not?: ReadonlyArray<string>
-}
+import { Category, Country, Keywords, Language, SortBy } from '../../model'
 
 export type TopHeadlinesRequest = {
 	readonly country?: Country
