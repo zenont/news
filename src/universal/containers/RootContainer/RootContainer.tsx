@@ -18,6 +18,9 @@ export class RootContainer extends Component<IRootContainerProps> {
 				<Provider store={store}>
 					<IntlProvider locale="en">
 						<div>
+							<div id="header-container" className="news-header">
+								header!!
+							</div>
 							<Router context={this.context} server={false} location="">
 								<Routes />
 							</Router>
