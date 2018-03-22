@@ -22,6 +22,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
 export default (): Configuration => {
 	const hostPort: number = Number.parseInt(process.env.LOCAL_HOST_PORT || '9009')
 	const config: Configuration = {
+		context: join(__dirname, rootPath),
 		entry: {
 			app: [
 				'babel-polyfill',
@@ -107,8 +108,9 @@ export default (): Configuration => {
 			],
 		},
 		resolve: {
-			extensions: ['ts', 'tsx', 'js', 'jsx']
+			extensions: ['.ts', '.tsx', '.js', '.jsx']
 		},
+		mode: 'development',
 		devtool: 'eval',
 		plugins: [
 			envPlugin,
