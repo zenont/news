@@ -18,7 +18,11 @@ const mapAjaxResponse$ = map<IAjaxArticleResponse | IAjaxErrorResponse, ArticleA
 
 export const requestTopHeadlinesEpic: Epic<ArticleAction, RootState> =
 	(action$, store) =>
-		action$.ofType<ArticleTopHeadlinesRequestAction>()
+		action$.ofType<ArticleTopHeadlinesRequestAction>(ArticleActions.requestTopHeadlines)
+			.pipe(map(a => {
+				console.log('yay!', a)
+				return a
+			}))
 			.pipe(map(action => action))
 			.pipe(switchMap(request =>
 				fetchTopHeadlines(request)
