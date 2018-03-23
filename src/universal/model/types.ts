@@ -15,3 +15,5 @@ export type Keywords = {
 	must?: ReadonlyArray<string>
 	not?: ReadonlyArray<string>
 }
+
+export type UnhandledError = string | Error | null

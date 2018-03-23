@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { Article, Category, Country, Keywords, Language, SortBy } from '../../model'
+import { Article, Category, Country, Keywords, Language, SortBy, UnhandledError } from '../../model'
 
 export enum ArticleActions {
 	requestTopHeadlines = 'ARTICLES/REQUEST_TOP_HEADLINES',
@@ -17,58 +17,31 @@ export type TopHeadlinesRequest = {
 	readonly page?: number
 }
 
-export class EverythingRequest {
-	public readonly keywords?: Keywords
-	public readonly sources?: ReadonlyArray<string>
-	public readonly domains?: ReadonlyArray<string>
-	public readonly from?: Date
-	public readonly to?: Date
-	public readonly language?: Language
-	public readonly sortBy?: SortBy
-	public readonly pageSize?: number
-	public readonly page?: number
+export type ArticleFulfillPayload = {
+	readonly articles: ReadonlyArray<Article>
+	readonly total: number
+}
+
+export type ArticleRejectPayload = {
+	readonly error?: UnhandledError
 }
 
 export type ReduxType<T extends string> = { readonly type: T }
 export type ActionType<T extends string, K = {}> = ReduxType<T> & Readonly<K>
 
-export const createAction = <T extends string, K = {}>(payload?: K): ActionType<T, K> => ({
+export const createAction = <T extends string, K = {}>(type: T, payload?: K): ActionType<T, K> => ({
+	type,
 	...payload as any
 })
 
 export type ArticleTopHeadlinesRequestAction = ActionType<ArticleActions.requestTopHeadlines, TopHeadlinesRequest>
 export type ArticleCancelAction = ActionType<ArticleActions.cancel>
-
-/*
-export class ArticleTopHeadlinesRequestAction implements IArticleTopHeadlinesRequestAction {
-	public readonly type = ArticleActions.requestTopHeadlines
-}
-
-export class ArticleEverythingRequestAction extends EverythingRequest implements Action {
-	public readonly type = ArticleActions.requestEverything
-}
-
-export class ArticleFulfillAction implements Action {
-	public readonly type = ArticleActions.fulfill
-	constructor(
-		public readonly articles: ReadonlyArray<Article>,
-		public readonly total: number) { }
-}
-
-export class ArticleRejectAction implements Action {
-	public readonly type = ArticleActions.reject
-	constructor(public readonly error?: string | Error | null) { }
-}
-
-export class ArticleCancelAction implements Action {
-	public readonly type = ArticleActions.cancel
-}
-*/
+export type ArticleFulfillAction = ActionType<ArticleActions.fulfill, ArticleFulfillPayload>
+export type ArticleRejectAction = ActionType<ArticleActions.reject, ArticleRejectPayload>
 
 export type ArticleAction =
-	/*ArticleTopHeadlinesRequestAction |
-	ArticleEverythingRequestAction |
+	ArticleTopHeadlinesRequestAction |
 	ArticleFulfillAction |
 	ArticleRejectAction |
-	ArticleCancelAction*/
-	ArticleTopHeadlinesRequestAction | ArticleCancelAction
+	ArticleCancelAction
+
