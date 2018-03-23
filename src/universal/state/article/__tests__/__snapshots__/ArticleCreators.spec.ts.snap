@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`article creators should cancel 1`] = `
+Object {
+  "type": "ARTICLES/CANCEL",
+}
+`;
+
+exports[`article creators should fulfill 1`] = `
+Object {
+  "articles": Array [
+    Object {
+      "author": "author1",
+      "description": "desc1",
+      "publishedAt": 2000-02-01T08:00:00.000Z,
+      "source": Object {
+        "id": "1",
+        "name": "source1",
+      },
+      "title": "title1",
+      "url": "url1",
+      "urlToImage": "urlImage1",
+    },
+    Object {
+      "author": "author2",
+      "description": "desc2",
+      "publishedAt": 2000-03-01T08:00:00.000Z,
+      "source": Object {
+        "id": "2",
+        "name": "source2",
+      },
+      "title": "title2",
+      "url": "url2",
+      "urlToImage": "urlImage2",
+    },
+  ],
+  "total": 2,
+  "type": "ARTICLES/FULFILL",
+}
+`;
+
+exports[`article creators should reject with Error 1`] = `
+Object {
+  "error": [Error: some error],
+  "type": "ARTICLES/REJECT",
+}
+`;
+
+exports[`article creators should reject with any error 1`] = `
+Object {
+  "error": 1000,
+  "type": "ARTICLES/REJECT",
+}
+`;
+
+exports[`article creators should reject with error message 1`] = `
+Object {
+  "error": "some error",
+  "type": "ARTICLES/REJECT",
+}
+`;
+
+exports[`article creators should request 1`] = `
+Object {
+  "country": "us",
+  "language": "en",
+  "sources": Array [
+    "source1",
+    "source2",
+    "source3",
+  ],
+  "type": "ARTICLES/REQUEST",
+}
+`;
+
+exports[`article creators should request top headlines 1`] = `
+Object {
+  "type": "ARTICLES/REQUEST_TOP_HEADLINES",
+}
+`;
