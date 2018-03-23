@@ -9,12 +9,12 @@ export enum ArticleActions {
 	cancel = 'ARTICLES/CANCEL',
 }
 
-export class TopHeadlinesRequest {
-	public readonly country?: Country
-	public readonly category?: Category
-	public readonly sources?: ReadonlyArray<string>
-	public readonly pageSize?: number
-	public readonly page?: number
+export type TopHeadlinesRequest = {
+	readonly country?: Country
+	readonly category?: Category
+	readonly sources?: ReadonlyArray<string>
+	readonly pageSize?: number
+	readonly page?: number
 }
 
 export class EverythingRequest {
@@ -29,7 +29,18 @@ export class EverythingRequest {
 	public readonly page?: number
 }
 
-export class ArticleTopHeadlinesRequestAction extends TopHeadlinesRequest implements Action {
+export type ReduxType<T extends string> = { readonly type: T }
+export type ActionType<T extends string, K = {}> = ReduxType<T> & Readonly<K>
+
+export const createAction = <T extends string, K = {}>(payload?: K): ActionType<T, K> => ({
+	...payload as any
+})
+
+export type ArticleTopHeadlinesRequestAction = ActionType<ArticleActions.requestTopHeadlines, TopHeadlinesRequest>
+export type ArticleCancelAction = ActionType<ArticleActions.cancel>
+
+/*
+export class ArticleTopHeadlinesRequestAction implements IArticleTopHeadlinesRequestAction {
 	public readonly type = ArticleActions.requestTopHeadlines
 }
 
@@ -52,10 +63,12 @@ export class ArticleRejectAction implements Action {
 export class ArticleCancelAction implements Action {
 	public readonly type = ArticleActions.cancel
 }
+*/
 
 export type ArticleAction =
-	ArticleTopHeadlinesRequestAction |
+	/*ArticleTopHeadlinesRequestAction |
 	ArticleEverythingRequestAction |
 	ArticleFulfillAction |
 	ArticleRejectAction |
-	ArticleCancelAction
+	ArticleCancelAction*/
+	ArticleTopHeadlinesRequestAction | ArticleCancelAction

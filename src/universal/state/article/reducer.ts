@@ -4,7 +4,6 @@ import { ArticleState } from '../common'
 
 export default (state: ArticleState = initState, action: ArticleAction): ArticleState => {
 	switch (action.type) {
-		case ArticleActions.requestEverything:
 		case ArticleActions.requestTopHeadlines: {
 			return {
 				...state,
@@ -13,7 +12,7 @@ export default (state: ArticleState = initState, action: ArticleAction): Article
 				error: undefined
 			}
 		}
-
+/*
 		case ArticleActions.reject: {
 			const { error } = action
 			return {
@@ -35,7 +34,7 @@ export default (state: ArticleState = initState, action: ArticleAction): Article
 				total
 			}
 		}
-
+*/
 		case ArticleActions.cancel: {
 			return {
 				...state,

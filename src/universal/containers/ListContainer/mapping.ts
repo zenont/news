@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 import { Selector, createSelector } from 'reselect'
 import { IListContainerDispatchProps, IListContainerStateProps } from './types'
-import { RootState, cancelArticles, requestArticles, requestTopHeadlines } from '../../state'
+import { RootState, cancelArticles, requestTopHeadlines } from '../../state'
 
 const articlesSelector = (store: RootState) => store.article.articles
 
