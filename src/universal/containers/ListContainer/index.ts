@@ -1,1 +1,2 @@
-export { default, IListContainerProps } from './ListContainer'
+export { default } from './ListContainer'
+export { IListContainerProps } from './types'

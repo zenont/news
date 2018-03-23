@@ -1,12 +1,12 @@
 import React, { ClassAttributes, Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
+import { mapDispatchToProps, mapStateToProps } from './mapping'
+import { IListContainerDispatchProps, IListContainerProps, IListContainerStateProps, ListContainerPropsType } from './types'
+import { RootState } from '../../state'
 import { NavBar } from '../../components'
 
-export interface IListContainerProps extends ClassAttributes<HTMLDivElement> {
-
-}
-
-export class ListContainer extends Component<IListContainerProps> {
+export class ListContainer extends Component<ListContainerPropsType> {
 	public render() {
 
 		return (
@@ -23,4 +23,5 @@ export class ListContainer extends Component<IListContainerProps> {
 	}
 }
 
-export default ListContainer
+export default connect<IListContainerStateProps, IListContainerDispatchProps, IListContainerProps, RootState>
+	(mapStateToProps, mapDispatchToProps)(ListContainer)
