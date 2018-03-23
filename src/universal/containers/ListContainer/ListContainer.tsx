@@ -7,6 +7,16 @@ import { RootState } from '../../state'
 import { NavBar } from '../../components'
 
 export class ListContainer extends Component<ListContainerPropsType> {
+	public componentDidMount() {
+		const { onLoad } = this.props
+		onLoad()
+	}
+
+	public componentWillUnmount(){
+		const { onUnload } = this.props
+		onUnload()
+	}
+
 	public render() {
 
 		return (
@@ -23,5 +33,5 @@ export class ListContainer extends Component<ListContainerPropsType> {
 	}
 }
 
-export default connect<IListContainerStateProps, IListContainerDispatchProps, IListContainerProps, RootState>
-	(mapStateToProps, mapDispatchToProps)(ListContainer)
+export default withRouter(connect<IListContainerStateProps, IListContainerDispatchProps, IListContainerProps, RootState>
+	(mapStateToProps, mapDispatchToProps)(ListContainer))

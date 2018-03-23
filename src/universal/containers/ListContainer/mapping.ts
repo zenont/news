@@ -17,6 +17,10 @@ export const mapStateToProps = (store: RootState): IListContainerStateProps => (
 })
 
 export const mapDispatchToProps = (dispatch: Dispatch<RootState>): IListContainerDispatchProps => ({
-	onLoad: () => dispatch(requestTopHeadlines({ })),
-	onUnload: () => dispatch(cancelArticles()),
+	onLoad: () => {
+		dispatch(requestTopHeadlines({}))
+	},
+	onUnload: () => {
+		dispatch(cancelArticles())
+	},
 })

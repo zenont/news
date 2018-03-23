@@ -1,5 +1,5 @@
 import { ClassAttributes } from 'react'
-import { LinkProps } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router-dom'
 import { Article } from '../../model'
 
 export interface IListContainerProps extends ClassAttributes<HTMLDivElement> {
@@ -21,7 +21,7 @@ export type ListContainerPropsType =
 	IListContainerProps &
 	IListContainerStateProps &
 	IListContainerDispatchProps &
-	LinkProps
+	RouteComponentProps<{}>
 
 export type ListContainerInjectedPropsType =
 	IListContainerStateProps &
