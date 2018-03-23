@@ -12,7 +12,7 @@ export class ListContainer extends Component<ListContainerPropsType> {
 		onLoad()
 	}
 
-	public componentWillUnmount(){
+	public componentWillUnmount() {
 		const { onUnload } = this.props
 		onUnload()
 	}
