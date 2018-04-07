@@ -15,5 +15,9 @@ export function fetchTopHeadlines(request: TopHeadlinesRequest): Observable<IAja
 	})
 
 	const url = `${urljoin(apiUrl, 'top-headlines')}?${query}`
-	return ajax.getJSON<IAjaxArticleResponse | IAjaxErrorResponse>(url)
+	return ajax({
+		url,
+		crossDomain: true,
+		method: 'GET',
+	})
 }

@@ -1,8 +1,8 @@
-import { Article } from '../../model'
+import { Article, Country } from '../../model'
 
 export type ArticleState = {
 	readonly language: string
-	readonly country: string
+	readonly country: Country
 	readonly sources: ReadonlyArray<string>
 	readonly articles: ReadonlyArray<Article>
 	readonly fetched: boolean

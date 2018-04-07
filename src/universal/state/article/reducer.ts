@@ -22,7 +22,7 @@ export default (state: ArticleState = initState, action: ArticleAction): Article
 				error
 			}
 		}
-
+*/
 		case ArticleActions.fulfill: {
 			const { articles, total } = action
 			return {
@@ -34,7 +34,7 @@ export default (state: ArticleState = initState, action: ArticleAction): Article
 				total
 			}
 		}
-*/
+
 		case ArticleActions.cancel: {
 			return {
 				...state,

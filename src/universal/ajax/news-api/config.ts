@@ -4,9 +4,19 @@ export interface INewsApiAjaxConfig {
 	readonly apiKey: string
 }
 
+const getConfigOrThrow = (key: string, val: string | undefined): string => {
+	if (val == null) {
+		throw new Error(`Missing config ${key}`)
+	}
+	return val
+}
+
+const apiUrl = getConfigOrThrow('NEWS_API_URL', process.env.NEWS_API_URL)
+const apiKey = getConfigOrThrow('NEWS_API_KEY', process.env.NEWS_API_KEY)
+
 export const config: INewsApiAjaxConfig = {
-	apiUrl: process.env.NEWS_API_URL || 'https://newsapi.org/v2/',
-	apiKey: process.env.NEWS_API_KEY || '9ed8490dae88488d98020bd516cbfe47',
+	apiUrl,
+	apiKey
 }
 
 export default config
