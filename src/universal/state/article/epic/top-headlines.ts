@@ -15,20 +15,13 @@ import {
 } from '../actions'
 import { fulfillArticles, rejectArticles } from '../creators'
 import { RootState } from '../../common'
-import { query, GraphqlData } from '../../../ajax'
-import { Country, Article } from '../../../model'
-import testQueryQl from '../../../graph/queries/test.graphql'
-import topHeadlinesQuery from '../../../graph/queries/top-headlines.graphql'
-
-type TopHeadlinesVars = {
-	readonly country?: Country
-}
-type TopHeadLineGraphResponse = {
-	readonly headlines: {
-		readonly articles: ReadonlyArray<Article>
-		readonly total: number
-	}
-}
+import {
+	topHeadlinesQuery,
+	TopHeadLineData,
+	TopHeadlinesVars,
+	query,
+	GraphqlData
+} from '../../../graph'
 
 const mapRequest$ = map<ArticleTopHeadlinesRequestAction, TopHeadlinesVars>(
 	({ country }) => ({
@@ -36,12 +29,11 @@ const mapRequest$ = map<ArticleTopHeadlinesRequestAction, TopHeadlinesVars>(
 	})
 )
 
-const fulfill$ = map<GraphqlData<TopHeadLineGraphResponse>, ArticleAction>(
-	({ data }) =>
-		fulfillArticles({
-			articles: data.headlines.articles,
-			total: data.headlines.total
-		})
+const fulfill$ = map<GraphqlData<TopHeadLineData>, ArticleAction>(({ data }) =>
+	fulfillArticles({
+		articles: data.headlines.articles,
+		total: data.headlines.total
+	})
 )
 
 export const requestTopHeadlinesEpic: Epic<any, RootState> = (action$, store) =>
@@ -52,10 +44,7 @@ export const requestTopHeadlinesEpic: Epic<any, RootState> = (action$, store) =>
 		.pipe(mapRequest$)
 		.pipe(
 			switchMap(request =>
-				query<TopHeadLineGraphResponse, TopHeadlinesVars>(
-					topHeadlinesQuery,
-					request
-				)
+				query<TopHeadLineData, TopHeadlinesVars>(topHeadlinesQuery, request)
 					.pipe(fulfill$)
 					.pipe(catchError(error => of(rejectArticles(error))))
 					.pipe(takeUntil(action$.ofType<ArticleCancelAction>()))
