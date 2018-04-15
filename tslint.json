@@ -87,7 +87,8 @@
 		"no-submodule-imports": [
 			true,
 			"rxjs",
-			"react-intl"
+			"react-intl",
+			"@news"
 		],
 		"interface-over-type-literal": false,
 		"jsRules": {
@@ -101,8 +102,23 @@
 			true,
 			"dev"
 		],
-		"jsx-boolean-value":[
+		"jsx-boolean-value": [
 			false
+		],
+		"no-unbound-method": [
+			true
+		],
+		"no-shadowed-variable": [
+			true
+		],
+		"no-duplicate-variable": [
+			true
+		],
+		"no-var-keyword": [
+			true
+		],
+		"no-invalid-template-strings": [
+			true
 		]
 	}
 }

@@ -1,6 +1,7 @@
 {
 	"version": "0.2.0",
 	"configurations": [
+
 		{
 			"type": "node",
 			"request": "attach",
@@ -27,6 +28,14 @@
 			],
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen"
-		}
+		},
+		{
+            "name": "Chrome Debug",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222,
+            "url": "http://localhost:9786/",
+            "webRoot": "${workspaceFolder}"
+        },
 	]
 }

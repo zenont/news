@@ -1,5 +1,6 @@
 import { Configuration, EnvironmentPlugin, HotModuleReplacementPlugin, NamedModulesPlugin, NoEmitOnErrorsPlugin } from 'webpack'
 import { join } from 'path'
+import DotenvPlugin from 'dotenv-webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const rootPath = '../../src/client'
@@ -8,9 +9,7 @@ const publicPath = '/'
 
 const envPlugin = new EnvironmentPlugin({
 	NODE_ENV: 'development',
-	NEWS_API_URL: 'https://newsapi.org/v1/',
-	NEWS_API_KEY: '9ed8490dae88488d98020bd516cbfe47',
-	DEBUG: true
+	DEBUG: true,
 })
 
 const htmlPlugin = new HtmlWebpackPlugin({
@@ -101,7 +100,8 @@ export default (): Configuration => {
 							module: 'es2015',
 							allowSyntheticDefaultImports: true,
 							esModuleInterop: true,
-							jsx: 'preserve'
+							jsx: 'preserve',
+							sourceMap: true
 						}
 					},
 				}
@@ -111,10 +111,10 @@ export default (): Configuration => {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
 		},
 		mode: 'development',
-		devtool: 'eval',
 		plugins: [
-			envPlugin,
+			// envPlugin,
 			htmlPlugin,
+			new DotenvPlugin(),
 			new HotModuleReplacementPlugin(),
 			new NamedModulesPlugin(),
 			new NoEmitOnErrorsPlugin(),
