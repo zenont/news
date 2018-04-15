@@ -1,4 +1,10 @@
-import { Configuration, EnvironmentPlugin, HotModuleReplacementPlugin, NamedModulesPlugin, NoEmitOnErrorsPlugin } from 'webpack'
+import {
+	Configuration,
+	EnvironmentPlugin,
+	HotModuleReplacementPlugin,
+	NamedModulesPlugin,
+	NoEmitOnErrorsPlugin
+} from 'webpack'
 import { join } from 'path'
 import DotenvPlugin from 'dotenv-webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -9,7 +15,7 @@ const publicPath = '/'
 
 const envPlugin = new EnvironmentPlugin({
 	NODE_ENV: 'development',
-	DEBUG: true,
+	DEBUG: true
 })
 
 const htmlPlugin = new HtmlWebpackPlugin({
@@ -19,7 +25,9 @@ const htmlPlugin = new HtmlWebpackPlugin({
 })
 
 export default (): Configuration => {
-	const hostPort: number = Number.parseInt(process.env.LOCAL_HOST_PORT || '9009')
+	const hostPort: number = Number.parseInt(
+		process.env.LOCAL_HOST_PORT || '9009'
+	)
 	const config: Configuration = {
 		context: join(__dirname, rootPath),
 		entry: {
@@ -36,8 +44,8 @@ export default (): Configuration => {
 				// bundle the client for hot reloading
 				// only- means to only hot reload for successful updates
 
-				'./index.tsx',
-			],
+				'./index.tsx'
+			]
 		},
 		output: {
 			path: outputPath,
@@ -63,8 +71,8 @@ export default (): Configuration => {
 						{
 							loader: 'css-loader',
 							options: {
-								sourceMap: true,
-							},
+								sourceMap: true
+							}
 						},
 						{ loader: 'sass-loader' }
 					]
@@ -75,21 +83,38 @@ export default (): Configuration => {
 					loader: 'file-loader?name=[name].[ext]'
 				},
 				{
+					test: /\.graphql?$/,
+					use: [
+						{
+							loader: 'webpack-graphql-loader',
+							options: {
+								output: 'string'
+								// validate: true,
+								// schema: "./path/to/schema.json",
+								// removeUnusedFragments: true
+								// etc. See "Loader Options" below
+							}
+						}
+					]
+				},
+				{
 					test: /\.tsx?$/,
 					exclude: [/node_modules/],
-					use: [{
-						loader: 'babel-loader',
-						options: {
-							presets: [['env', { modules: false }], 'stage-0', 'react'],
-							plugins: [
-								'transform-class-properties',
-								'transform-decorators-legacy',
-								'transform-object-rest-spread',
-								'react-hot-loader/babel',
-							],
-							babelrc: false
+					use: [
+						{
+							loader: 'babel-loader',
+							options: {
+								presets: [['env', { modules: false }], 'stage-0', 'react'],
+								plugins: [
+									'transform-class-properties',
+									'transform-decorators-legacy',
+									'transform-object-rest-spread',
+									'react-hot-loader/babel'
+								],
+								babelrc: false
+							}
 						}
-					}],
+					]
 				},
 				{
 					test: /\.tsx?$/,
@@ -103,9 +128,9 @@ export default (): Configuration => {
 							jsx: 'preserve',
 							sourceMap: true
 						}
-					},
+					}
 				}
-			],
+			]
 		},
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -117,7 +142,7 @@ export default (): Configuration => {
 			new DotenvPlugin(),
 			new HotModuleReplacementPlugin(),
 			new NamedModulesPlugin(),
-			new NoEmitOnErrorsPlugin(),
+			new NoEmitOnErrorsPlugin()
 		],
 		devServer: {
 			historyApiFallback: true,

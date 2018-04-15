@@ -1,4 +1,12 @@
-import { Configuration, Entry, EnvironmentPlugin, HotModuleReplacementPlugin, NamedModulesPlugin, NoEmitOnErrorsPlugin, Output } from 'webpack'
+import {
+	Configuration,
+	Entry,
+	EnvironmentPlugin,
+	HotModuleReplacementPlugin,
+	NamedModulesPlugin,
+	NoEmitOnErrorsPlugin,
+	Output
+} from 'webpack'
 import { join } from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
@@ -26,7 +34,7 @@ export default (env?: WebpackEnv): Configuration => {
 		devServer: {
 			historyApiFallback: true,
 			hot: true,
-			contentBase: './dist',
+			contentBase: './dist'
 		},
 		entry: {
 			app: [
@@ -34,8 +42,8 @@ export default (env?: WebpackEnv): Configuration => {
 				'react-hot-loader/patch',
 				`webpack-dev-server/client?http://localhost:${hostPort}`,
 				'webpack/hot/only-dev-server',
-				'./index.tsx',
-			],
+				'./index.tsx'
+			]
 		},
 		output: {
 			path: outputPath,
@@ -66,8 +74,8 @@ export default (env?: WebpackEnv): Configuration => {
 						{
 							loader: 'css-loader',
 							options: {
-								sourceMap: true,
-							},
+								sourceMap: true
+							}
 						},
 						{ loader: 'sass-loader' }
 					]
@@ -78,35 +86,50 @@ export default (env?: WebpackEnv): Configuration => {
 					loader: 'file-loader?name=[name].[ext]'
 				},
 				{
-					test: /\.ts(x?)$/,
-					exclude: [/node_modules/],
-					use: [{
-						loader: 'babel-loader',
-						options: {
-							presets: [['env', { modules: false }], 'react'],
-							plugins: [
-								'transform-class-properties',
-								'transform-decorators-legacy',
-								'transform-object-rest-spread',
-								'react-hot-loader/babel',
-							],
-							babelrc: false
-						}
-					},
-					{
-						loader: 'ts-loader',
-						options: {
-							compilerOptions: {
-								sourceMap: true,
-								jsx: 'preserve',
-								allowSyntheticDefaultImports: true,
-								esModuleInterop: true,
-
+					test: /\.graphql?$/,
+					use: [
+						{
+							loader: 'webpack-graphql-loader',
+							options: {
+								// validate: true,
+								// schema: "./path/to/schema.json",
+								// removeUnusedFragments: true
+								// etc. See "Loader Options" below
 							}
 						}
-					}],
+					]
 				},
-			],
+				{
+					test: /\.ts(x?)$/,
+					exclude: [/node_modules/],
+					use: [
+						{
+							loader: 'babel-loader',
+							options: {
+								presets: [['env', { modules: false }], 'react'],
+								plugins: [
+									'transform-class-properties',
+									'transform-decorators-legacy',
+									'transform-object-rest-spread',
+									'react-hot-loader/babel'
+								],
+								babelrc: false
+							}
+						},
+						{
+							loader: 'ts-loader',
+							options: {
+								compilerOptions: {
+									sourceMap: true,
+									jsx: 'preserve',
+									allowSyntheticDefaultImports: true,
+									esModuleInterop: true
+								}
+							}
+						}
+					]
+				}
+			]
 		},
 		plugins: [
 			new EnvironmentPlugin({
@@ -120,12 +143,11 @@ export default (env?: WebpackEnv): Configuration => {
 			}),
 			new HotModuleReplacementPlugin(),
 			new NamedModulesPlugin(),
-			new NoEmitOnErrorsPlugin(),
+			new NoEmitOnErrorsPlugin()
 		],
 		resolve: {
 			extensions: ['.jsx', '.js', '.ts', '.tsx'],
-			alias: {
-			}
+			alias: {}
 		}
 	}
 

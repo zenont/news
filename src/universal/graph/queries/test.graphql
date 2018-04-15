@@ -1,0 +1,16 @@
+query TestQuery($domains: [String], $take: Int) {
+  everything(domains: $domains) {
+    articles {
+      title
+      url
+      urlToImage
+    }
+  }
+  sources(take: $take) {
+    sources {
+      id
+      name
+      category
+    }
+  }
+}

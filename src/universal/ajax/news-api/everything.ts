@@ -6,15 +6,7 @@ import urlJoin from 'url-join'
 import { config } from './config'
 import { EverythingRequest } from './request'
 import { IAjaxArticleResponse, IAjaxErrorResponse } from './response'
-/*
-var query = `query RollDice($dice: Int!, $sides: Int) {
-	rollDice(numDice: $dice, numSides: $sides)
-  }`;
-  xhr.send(JSON.stringify({
-	query: query,
-	variables: { dice: dice, sides: sides },
-  }));
-*/
+
 export function fetchEverything(
 	request: EverythingRequest
 ): Observable<IAjaxArticleResponse | IAjaxErrorResponse> {

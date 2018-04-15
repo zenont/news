@@ -1,0 +1,13 @@
+query TopHeadlinesQuery($country: String) {
+  headlines(country: $country) {
+    articles {
+      author,
+      title,
+      url,
+      description,
+      urlToImage,
+      publishedAt
+    }
+    total
+  }
+}
