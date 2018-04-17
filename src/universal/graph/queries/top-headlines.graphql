@@ -1,6 +1,7 @@
 query TopHeadlinesQuery($country: String) {
   headlines(country: $country) {
     articles {
+			id,
       author,
       title,
       url,

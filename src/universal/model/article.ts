@@ -5,6 +5,7 @@ export type ArticleSource = {
 }
 
 export type Article = {
+	readonly id: string
 	readonly source?: ArticleSource
 	readonly author?: string
 	readonly title: string
